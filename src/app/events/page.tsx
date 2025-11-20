@@ -52,12 +52,21 @@ const Events = async ({ searchParams }: EventProps) => {
   const numericLimit = parseInt(limit, 10);
   const numericOffset = parseInt(offset, 10);
 
+
   const { data } = await getAllEvents({
     q,
     category: category !== "all" ? category : undefined,
     limit: numericLimit,
     offset: numericOffset,
   });
+
+  if (!data || typeof data.total === "undefined" || !data.data) {
+    return (
+      <div className="p-10 text-center text-gray-400">
+        Failed to load events.
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-4 md:py-8 max-w-7xl">
@@ -71,10 +80,11 @@ const Events = async ({ searchParams }: EventProps) => {
 
       <EventsFilterBar />
 
+
       <EventsComponet total={data.total} events={data.data} />
 
       <Pagination
-        total={data.total!}
+        total={data.total ?? 0}
         limit={numericLimit}
         offset={numericOffset}
       />

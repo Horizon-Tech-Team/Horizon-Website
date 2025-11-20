@@ -5,6 +5,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import vp from "@/assets/vp.jpg";
+import arya from "@/assets/Arya_Tambe.jpeg";
+
 import {
   Calendar,
   MapPin,
@@ -89,13 +92,13 @@ const teamMembers = [
     slogan: "Influence through words, impact through action.",
     image: "https://i.pravatar.cc/300?img=10",
   },
-  {
-    id: 11,
-    name: "Dhiraj Lande",
-    designation: "Technical Head",
-    slogan: "Logic is my compass, code is my language...",
-    image: "https://i.pravatar.cc/300?img=11",
-  },
+  // {
+  //   id: 11,
+  //   name: "Dhiraj Lande",
+  //   designation: "Technical Head",
+  //   slogan: "Logic is my compass, code is my language...",
+  //   image: "https://i.pravatar.cc/300?img=11",
+  // },
   {
     id: 12,
     name: "Nitish Dole",
@@ -127,23 +130,23 @@ const teamMembers = [
   {
     id: 16,
     name: "Arya Tambe",
-    designation: "Technical Co-Head",
+    designation: "Technical Head",
     slogan: "Beyond error lies evolution.",
-    image: "https://i.pravatar.cc/300?img=16",
+    image: arya,
   },
   {
     id: 17,
     name: "Shubham Bandarkar & Parth Lahor",
     designation: "Vice President 1",
     slogan: "One Team. One Mission. One Fest.",
-    image: "https://i.pravatar.cc/300?img=17",
+    image: vp,
   },
   {
     id: 18,
     name: "Soham Patil",
     designation: "Management Head",
     slogan: "Leading with logic, managing with heart.",
-    image: "https://i.pravatar.cc/300?img=18",
+    image: vp,
   },
   // {
   //   id: 19,
@@ -215,14 +218,14 @@ export default function AboutPage() {
     <div className="container max-w-7xl py-8 mx-auto px-4 md:px-6">
       {/* Hero */}
       <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden mb-12">
-        <Image
-          src="https://gjewacuwtvvhxoazxrco.supabase.co/storage/v1/object/public/events/horizon_og.png"
-          alt="Horizon Tech Fest 2025"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
+        <video
+          src="/Loop_vid.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full opacity-70 object-cover"
+        /><video/>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 flex flex-col justify-center p-6">
           <Badge className="mb-2 w-fit" variant="secondary">
             May 15-18, 2025
@@ -498,7 +501,7 @@ export default function AboutPage() {
 
         {/* Vice Presidents */}
         {vps.length > 0 && (
-                    <div className="flex justify-center mb-12">
+          <div className="flex justify-center mb-12">
 
             {vps.map((vp) => (
               <Card
@@ -551,46 +554,46 @@ export default function AboutPage() {
         )}
 
         {/* Other Teams */}
-<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-  {teams.map((team, idx) => (
-    <Card
-      key={team.title || idx}
-      className="bg-muted/10 p-6 rounded-xl hover:shadow-xl transition-shadow duration-300 w-full"
-    >
-      <CardContent>
-        <h3 className="text-lg md:text-xl font-bold mb-6 text-white">{team.title}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {teams.map((team, idx) => (
+            <Card
+              key={team.title || idx}
+              className="bg-muted/10 p-6 rounded-xl hover:shadow-xl transition-shadow duration-300 w-full"
+            >
+              <CardContent>
+                <h3 className="text-lg md:text-xl font-bold mb-6 text-white">{team.title}</h3>
 
-        {/* Inner flexible row */}
-        <div className="flex flex-wrap justify-center gap-6">
-          {[team.head, team.cohead].map((person, i) =>
-            person ? (
-              <div
-                key={person.designation || person.name || i}
-                className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[140px] max-w-[200px]"
-              >
-                <p className="uppercase text-sm font-extrabold text-indigo-100 mb-2">
-                  {person.designation}
-                </p>
+                {/* Inner flexible row */}
+                <div className="flex flex-wrap justify-center gap-6">
+                  {[team.head, team.cohead].map((person, i) =>
+                    person ? (
+                      <div
+                        key={person.designation || person.name || i}
+                        className="flex flex-col items-center text-center p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors duration-300 flex-1 min-w-[140px] max-w-[200px]"
+                      >
+                        <p className="uppercase text-sm font-extrabold text-indigo-100 mb-2">
+                          {person.designation}
+                        </p>
 
-                <div className="relative w-[100%] aspect-square max-w-[120px] rounded-lg overflow-hidden mb-3 border-2 border-gray-900 group transition-all duration-300">
-                  <Image
-                    src={person.image || "/placeholder.svg"}
-                    alt={person.name || person.designation}
-                    fill
-                    className="object-cover"
-                  />
+                        <div className="relative w-[100%] aspect-square max-w-[120px] rounded-lg overflow-hidden mb-3 border-2 border-gray-900 group transition-all duration-300">
+                          <Image
+                            src={person.image || "/placeholder.svg"}
+                            alt={person.name || person.designation}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+
+                        <h4 className="text-white font-bold">{person.name}</h4>
+                        <p className="text-gray-300 text-sm italic">{person.slogan}</p>
+                      </div>
+                    ) : null
+                  )}
                 </div>
-
-                <h4 className="text-white font-bold">{person.name}</h4>
-                <p className="text-gray-300 text-sm italic">{person.slogan}</p>
-              </div>
-            ) : null
-          )}
+              </CardContent>
+            </Card>
+          ))}
         </div>
-      </CardContent>
-    </Card>
-  ))}
-</div>
 
       </section>
 
