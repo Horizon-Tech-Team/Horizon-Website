@@ -52,7 +52,7 @@ const Hero = () => {
               World here.
             </motion.p>
 
-            <div className="space-x-4">
+            {/* <div className="space-x-4">
               {user?.role == undefined ? (
                 <>
                   {" "}
@@ -113,7 +113,7 @@ const Hero = () => {
                   </Link>
                 </>
               )}
-            </div>
+            </div> */}
           </div>
 
           {/* Image Section */}

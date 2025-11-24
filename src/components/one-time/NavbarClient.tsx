@@ -108,7 +108,7 @@ const NavbarClient = () => {
       />
 
       {/* Call to Action button */}
-      <div className="hidden md:flex">
+      {/* <div className="hidden md:flex">
         {user ? (
           <div className="relative">
             <DropdownMenu>
@@ -161,7 +161,7 @@ const NavbarClient = () => {
             </button>
           </Link>
         )}
-      </div>
+      </div> */}
     </motion.nav>
   );
 };
