@@ -19,7 +19,7 @@ const Banner2 = () => {
             viewport={{ once: true }}
             className="text-4xl font-bold font-serif"
           >
-            Simple way to make stylish living room
+            A Simple Way to Experience Innovation
           </motion.h2>
           <motion.p
             variants={SlideUp(0.4)}
@@ -28,8 +28,9 @@ const Banner2 = () => {
             viewport={{ once: true }}
             className="text-gray-500 text-sm leading-7"
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-            earum accusantium tempore nam aliquid.
+            Learn, create, and compete! From coding challenges and logic games to hardware-based
+workshops, Horizon Fest 2025 is designed to spark curiosity and celebrate technical
+excellence.
           </motion.p>
           <motion.div
             variants={SlideUp(0.6)}
@@ -39,9 +40,9 @@ const Banner2 = () => {
             className="flex gap-6"
           >
             {[
-              { value: "15", label: "Years of Experience" },
-              { value: "350", label: "Happy Clients" },
-              { value: "34", label: "Award Gained" },
+              { value: "2", label: " Days of non-stop tech action" },
+              { value: "24+", label: "Events across coding, gaming, and innovation" },
+              { value: "500+", label: " Participants from colleges across India" },
             ].map((stat, idx) => (
               <motion.div
                 key={idx}
