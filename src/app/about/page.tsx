@@ -53,7 +53,7 @@ const teamMembers = [
   {
     id: 5,
     name: "Pushkar Patil",
-    designation: "Photographer",
+    designation: "Security Co-Head",
     slogan: "Guarding memories with precision.",
     image: "https://i.pravatar.cc/300?img=5",
   },
@@ -64,13 +64,13 @@ const teamMembers = [
     slogan: "Driving growth through marketing.",
     image: "https://i.pravatar.cc/300?img=6",
   },
-  {
-    id: 7,
-    name: "Omkar Kokate",
-    designation: "Security Head",
-    slogan: "Be bold, be safe, be sentinel.",
-    image: "https://i.pravatar.cc/300?img=7",
-  },
+  // {
+  //   id: 7,
+  //   name: "Omkar Kokate",
+  //   designation: "Security Head",
+  //   slogan: "Be bold, be safe, be sentinel.",
+  //   image: "https://i.pravatar.cc/300?img=7",
+  // },
   {
     id: 8,
     name: "Yash Gupta",
@@ -87,9 +87,9 @@ const teamMembers = [
   },
   {
     id: 10,
-    name: "Yash Khilare",
+    name: "Madhura Kadam",
     designation: "PR Head",
-    slogan: "Influence through words, impact through action.",
+    slogan: "Bridging minds, shaping moments.",
     image: "https://i.pravatar.cc/300?img=10",
   },
   // {
@@ -116,15 +116,15 @@ const teamMembers = [
   {
     id: 14,
     name: "Atharv Chavan",
-    designation: "Hospitality Head",
+    designation: "Security Head",
     slogan: "Good vibes, Great welcomes!",
     image: "https://i.pravatar.cc/300?img=14",
   },
   {
     id: 15,
     name: "Arpita Chavan",
-    designation: "Hospitality Co-Head",
-    slogan: "The warmth behind the welcome.",
+    designation: "Security Co-Head",
+    slogan: "Where security meets responsibility..",
     image: "https://i.pravatar.cc/300?img=15",
   },
   {
@@ -136,32 +136,32 @@ const teamMembers = [
   },
   {
     id: 17,
-    name: "Shubham Bandarkar & Parth Lahor",
+    name: "Shubham Bandarkar",
     designation: "Vice President 1",
-    slogan: "One Team. One Mission. One Fest.",
+    slogan: "Battlefield of Idaes , Victory of Innovation.",
     image: vp,
   },
   {
     id: 18,
     name: "Soham Patil",
     designation: "Management Head",
-    slogan: "Leading with logic, managing with heart.",
+    slogan: "Leading with logic, managing with heart.",
     image: vp,
   },
-  // {
-  //   id: 19,
-  //   name: "Parth Lahor",
-  //   designation: "Vice President 2",
-  //   slogan: "Battlefield of ideas, victory of innovation. One Team. One Mission. One Fest.",
-  //   image: "https://i.pravatar.cc/300?img=19",
-  // },
+  {
+    id: 19,
+    name: "Parth Lahor",
+    designation: "Vice President 2",
+    slogan: "BOne Team. One Mission. One Fest.",
+    image: "https://i.pravatar.cc/300?img=19",
+  },
 ];
 
 const teams = [
   {
     title: "Technical Team",
     head: teamMembers.find((m) => m.designation === "Technical Head"),
-    cohead: teamMembers.find((m) => m.designation === "Technical Co-Head"),
+    // cohead: teamMembers.find((m) => m.designation === "Technical Co-Head"),
   },
   {
     title: "Creative Team",
@@ -179,9 +179,9 @@ const teams = [
     cohead: teamMembers.find((m) => m.designation === "Marketing Co-Head"),
   },
   {
-    title: "Hospitality Team",
-    head: teamMembers.find((m) => m.designation === "Hospitality Head"),
-    cohead: teamMembers.find((m) => m.designation === "Hospitality Co-Head"),
+    title: "Security Team",
+    head: teamMembers.find((m) => m.designation === "Security Head"),
+    cohead: teamMembers.find((m) => m.designation === "Security Co-Head"),
   },
   {
     title: "Mass Media Team",
@@ -219,12 +219,12 @@ export default function AboutPage() {
       {/* Hero */}
       <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden mb-12">
         <video
-          src="/Loop_vid.mp4"
+          src="/Looping-vid.mp4"
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full opacity-70 object-cover"
+          className="absolute inset-0 w-full h-full opacity-60 object-cover"
         /><video/>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 flex flex-col justify-center p-6">
           <Badge className="mb-2 w-fit" variant="secondary">

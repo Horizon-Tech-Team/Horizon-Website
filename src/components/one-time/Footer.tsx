@@ -62,12 +62,12 @@ const Footer = () => {
             <ul className="text-base font-semibold space-y-4">
               <li className="flex items-center space-x-3">
                 <FaPhone />
-                <a href="tel:+919969269741">+91 9969269741</a>
+                <a href="tel:+918097670761">+91 8097670761</a>
               </li>
               <li className="flex items-center space-x-3">
                 <LuMessageSquare />
-                <a href="mailto:landedhiraj928@gmail.com">
-                  landedhiraj928@gmail.com
+                <a href="mailto:techteam.horizon@gmail.com">
+                  techteam.horizon@gmail.com
                 </a>
               </li>
             </ul>
