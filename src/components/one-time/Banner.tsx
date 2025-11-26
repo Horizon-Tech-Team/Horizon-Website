@@ -36,7 +36,7 @@ const Banner = () => {
             viewport={{ once: true }}
             className="text-4xl font-bold font-serif"
           >
-            We believe that a team makes any project better
+            Together, We Build the Future of Technology
           </motion.h2>
           <motion.p
             variants={SlideUp(0.4)}
@@ -45,8 +45,10 @@ const Banner = () => {
             viewport={{ once: true }}
             className="text-gray-500 text-sm leading-7"
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
-            earum accusantium tempore nam aliquid.
+            Horizon Fest 2025 is powered by a dynamic team of organizers, innovators, and tech
+enthusiasts who believe that great ideas come alive through teamwork.
+Our mission is to create a space where creativity meets technology — turning inspiration
+into innovation.
           </motion.p>
           <motion.button
             variants={SlideUp(0.6)}
