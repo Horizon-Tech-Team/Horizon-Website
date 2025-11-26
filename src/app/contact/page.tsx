@@ -507,22 +507,21 @@ export default function ContactPage() {
             {
               question: "When and where is Horizon Tech Fest 2025?",
               answer:
-                "Horizon Tech Fest 2025 will take place from May 15-18, 2025, at the Tech Convention Center in San Francisco, CA.",
+                "Horizon Tech Fest 2026 will be held on 6th and 7th January 2026, from 10:00 AM to 4:00 PM, at our campus grounds.",
             },
             {
               question: "How can I register for events?",
-              answer:
-                "You can register for individual events through our Events page. Some events require separate registration and may have limited capacity.",
+              answer: "You can register for individual or group events through our official website www.horizonfest.in. Each event will have its own registration form and guidelines. Make sure to register early —limited slots are available!",
+
+
             },
             {
               question: "Are there opportunities for sponsorship?",
-              answer:
-                "Yes, we offer various sponsorship packages. Please contact us through the Sponsorship tab on this page for more information.",
+              answer: "Yes! Horizon Tech Fest 2026 offers multiple sponsorship packages for organizations looking to collaborate or promote their brand. Please reach out to us via the Sponsorship sectionon our website or the marketing head. SANIKA LAD : +91 93264 91719",
             },
             {
               question: "Can I volunteer at the event?",
-              answer:
-                "We're always looking for enthusiastic volunteers. Please email volunteers@horizontechfest.com for more information.",
+              answer: "Absolutely! We’re always looking for enthusiastic volunteers to be part of the Horizon Team. To apply as a volunteer, email us at: horizonfest9@gmail.com",
             },
           ].map((faq, index) => (
             <Card key={index}>

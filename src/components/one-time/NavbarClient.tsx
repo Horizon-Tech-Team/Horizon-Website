@@ -21,9 +21,10 @@ import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const NavLinks = [
-  { id: 1, title: "Events", link: "events" },
+  { id: 1, title: "Home", link: "/" },
   { id: 2, title: "About", link: "about" },
-  { id: 3, title: "Leaderboard", link: "leaderboard" },
+  { id: 3, title: "Events", link: "events" },
+  // { id: 3, title: "Leaderboard", link: "leaderboard" },
   { id: 4, title: "Contact", link: "contact" },
 ];
 
