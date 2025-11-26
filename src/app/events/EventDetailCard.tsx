@@ -1,80 +1,84 @@
+// EventDetailCard.tsx (or the file where EventsComponet is defined)
 "use client";
 
+import React from "react";
 import Image from "next/image";
-import eventBanner from "@/assets/eventBanner.jpg";
-import { Event } from "./page";
 import Link from "next/link";
 import { CalendarDays, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+
+// ← ADD THIS LINE:
 import { calculateDaysRemaining, formatDate } from "@/lib/utils";
+
+// Event type import (if needed)
+import type { Event } from "@/lib/types"; // adjust path if different
+
+import { Button } from "@/components/ui/button";
 
 export const EventCard = ({ event }: { event: Event }) => {
   return (
-    <Link href={`/events/${event.uid}`} key={event.uid} className="group">
-      <Card
-        className="
-          h-full overflow-hidden border border-black dark:border-white
-          shadow-[5px_5px_0px_0px] transition-all duration-300
-          hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black
-          hover:shadow-[5px_5px_0px_0px_#6c6c6c]
-        "
-      >
-        {/* Banner Section */}
-        <div className="relative h-48 overflow-hidden">
-          <Image
-            src={event.banner_url || eventBanner}
-            alt={event.name}
-            fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 33vw"
-            priority={true}
-            onError={(e) => {
-              e.currentTarget.src = eventBanner.src;
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
-          {/* Badges */}
-          <div className="absolute bottom-3 left-3 flex gap-2 flex-wrap">
-            <Badge variant="secondary">{event.category}</Badge>
-            {event.is_team_event && (
-              <Badge variant="outline" className="bg-black/50 text-white">
-                Team Event
-              </Badge>
-            )}
-          </div>
-
-          {/* Days left */}
-          {event.start_time && (
-            <div className="absolute top-3 right-3 rounded-md bg-black/60 px-2 py-1 text-sm font-medium text-white">
-              {calculateDaysRemaining(event.start_time)} days left
-            </div>
+    <Card className="group h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg flex flex-col">
+      <Link href={`/events/${event.uid}`} className="block relative h-48 overflow-hidden">
+        <Image
+          src={event.banner_url || "/placeholder_event.jpg"}
+          alt={event.name}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          sizes="(max-width: 768px) 100vw, 33vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute bottom-3 left-3 flex gap-2">
+          <Badge variant="secondary" className="bg-background/80 backdrop-blur-md">
+            {event.category}
+          </Badge>
+          {event.is_team_event && (
+            <Badge variant="outline" className="bg-black/50 text-white border-white/20 backdrop-blur-md">
+              Team Event
+            </Badge>
           )}
         </div>
 
-        {/* Content Section */}
-        <CardContent className="p-4">
-          <h3 className="mb-2 line-clamp-1 text-xl font-bold">{event.name}</h3>
-          <p className="mb-3 line-clamp-2 text-sm text-muted-foreground">
-            {event.description}
-          </p>
+        {event.start_time && (
+          <div className="absolute top-3 right-3 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white backdrop-blur-md border border-white/10">
+            {calculateDaysRemaining(event.start_time)} days left
+          </div>
+        )}
+      </Link>
 
-          <div className="flex flex-col gap-2 text-sm">
+      <CardContent className="p-5 flex flex-col flex-grow">
+        <Link href={`/events/${event.uid}`} className="block">
+          <h3 className="mb-2 line-clamp-1 text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
+            {event.name}
+          </h3>
+        </Link>
+        <p className="mb-4 line-clamp-2 text-sm text-muted-foreground flex-grow">
+          {event.description}
+        </p>
+
+        <div className="flex flex-col gap-4 mt-auto">
+          <div className="flex flex-col gap-2.5 text-sm text-muted-foreground">
             {event.start_time && (
-              <div className="flex items-center gap-2">
-                <CalendarDays className="h-4 w-4 text-muted-foreground" />
+              <div className="flex items-center gap-2.5">
+                <CalendarDays className="h-4 w-4 text-primary" />
                 <span>{formatDate(event.start_time)}</span>
               </div>
             )}
-            <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-muted-foreground" />
+            <div className="flex items-center gap-2.5">
+              <MapPin className="h-4 w-4 text-primary" />
               <span>{event.venue}</span>
             </div>
           </div>
-        </CardContent>
-      </Card>
-    </Link>
+
+          <Button asChild className="w-full" size="sm">
+            <Link href={event.registration_link || "#"} target="_blank" rel="noopener noreferrer">
+              Enroll
+            </Link>
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -83,25 +87,27 @@ export const EventsComponet = ({
   events,
 }: {
   total: number;
-  events: Event[] | null;
+  events: Event[];
 }) => {
-  if (!events || events.length === 0 || !total) {
+  if (total === 0) {
     return (
-      <div className="text-center text-muted-foreground py-10">
-        No events available.
+      <div className="flex flex-col items-center justify-center py-12 text-center">
+        <div className="rounded-full bg-muted p-4 mb-4">
+          <CalendarDays className="h-8 w-8 text-muted-foreground" />
+        </div>
+        <h3 className="text-lg font-semibold">No events found</h3>
+        <p className="text-muted-foreground">
+          Try adjusting your search or filters to find what you're looking for.
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-4">
-      <div className="text-muted-foreground text-sm">Total: {total}</div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {events.map((event) => (
-          <EventCard key={event.uid} event={event} />
-        ))}
-      </div>
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+      {events.map((event) => (
+        <EventCard key={event.uid} event={event} />
+      ))}
     </div>
   );
 };
