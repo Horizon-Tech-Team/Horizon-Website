@@ -394,11 +394,10 @@ export default function AboutPage() {
             <CardContent className="p-4 sm:p-6 pt-6 sm:pt-8">
               <Award className="h-8 w-8 md:h-10 md:w-10 text-primary mb-3 md:mb-4" />
               <h3 className="text-lg md:text-xl font-bold mb-2">
-                Hackathon 2025
+                TECH-SPOTLIGHT
               </h3>
               <p className="text-sm md:text-base text-muted-foreground mb-4">
-                A 24-hour coding marathon where teams compete to build
-                innovative solutions to real-world problems.
+                Explore cutting-edge innovations and showcase your tech brilliance.
               </p>
               <Badge variant="outline">Competition</Badge>
             </CardContent>
@@ -406,10 +405,9 @@ export default function AboutPage() {
           <Card>
             <CardContent className="p-4 sm:p-6 pt-6 sm:pt-8">
               <Cpu className="h-8 w-8 md:h-10 md:w-10 text-primary mb-3 md:mb-4" />
-              <h3 className="text-lg md:text-xl font-bold mb-2">AI Summit</h3>
+              <h3 className="text-lg md:text-xl font-bold mb-2">TECHNICAL EVENTS</h3>
               <p className="text-sm md:text-base text-muted-foreground mb-4">
-                Explore the latest advancements in artificial intelligence with
-                industry leaders and researchers.
+                Put your engineering and problem-solving skills to the test.
               </p>
               <Badge variant="outline">Conference</Badge>
             </CardContent>
@@ -417,10 +415,9 @@ export default function AboutPage() {
           <Card>
             <CardContent className="p-4 sm:p-6 pt-6 sm:pt-8">
               <Globe className="h-8 w-8 md:h-10 md:w-10 text-primary mb-3 md:mb-4" />
-              <h3 className="text-lg md:text-xl font-bold mb-2">Tech Expo</h3>
+              <h3 className="text-lg md:text-xl font-bold mb-2">ANALYTICAL EVENTS</h3>
               <p className="text-sm md:text-base text-muted-foreground mb-4">
-                Discover cutting-edge products and services from startups and
-                established tech companies.
+               Decode puzzles and data-driven challenges with sharp logic. 
               </p>
               <Badge variant="outline">Exhibition</Badge>
             </CardContent>
@@ -429,11 +426,10 @@ export default function AboutPage() {
             <CardContent className="p-4 sm:p-6 pt-6 sm:pt-8">
               <Users className="h-8 w-8 md:h-10 md:w-10 text-primary mb-3 md:mb-4" />
               <h3 className="text-lg md:text-xl font-bold mb-2">
-                Networking Mixer
+                VERBAL EVENTS
               </h3>
               <p className="text-sm md:text-base text-muted-foreground mb-4">
-                Connect with fellow tech enthusiasts, potential collaborators,
-                and industry professionals.
+                Express, debate, and articulate your ideas with confidence.
               </p>
               <Badge variant="outline">Networking</Badge>
             </CardContent>
@@ -442,11 +438,10 @@ export default function AboutPage() {
             <CardContent className="p-4 sm:p-6 pt-6 sm:pt-8">
               <Lightbulb className="h-8 w-8 md:h-10 md:w-10 text-primary mb-3 md:mb-4" />
               <h3 className="text-lg md:text-xl font-bold mb-2">
-                Startup Pitch
+                CREATIVE EVENTS
               </h3>
               <p className="text-sm md:text-base text-muted-foreground mb-4">
-                Watch innovative startups pitch their ideas to investors and
-                compete for funding.
+                Let imagination run wild through art, design, and storytelling.
               </p>
               <Badge variant="outline">Competition</Badge>
             </CardContent>
@@ -454,10 +449,9 @@ export default function AboutPage() {
           <Card>
             <CardContent className="p-4 sm:p-6 pt-6 sm:pt-8">
               <Code className="h-8 w-8 md:h-10 md:w-10 text-primary mb-3 md:mb-4" />
-              <h3 className="text-lg md:text-xl font-bold mb-2">Workshops</h3>
+              <h3 className="text-lg md:text-xl font-bold mb-2">FUN EVENTS</h3>
               <p className="text-sm md:text-base text-muted-foreground mb-4">
-                Hands-on sessions covering various technologies, from web
-                development to quantum computing.
+                Unwind and enjoy light-hearted competitions that bring out your playful side!
               </p>
               <Badge variant="outline">Learning</Badge>
             </CardContent>
