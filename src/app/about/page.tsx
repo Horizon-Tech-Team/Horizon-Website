@@ -226,7 +226,7 @@ export default function AboutPage() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full opacity-60 object-cover"
+          className="absolute inset-0 w-full h-full opacity-90 object-cover"
         /><video/>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 flex flex-col justify-center p-6">
           <Badge className="mb-2 w-fit" variant="secondary">
