@@ -26,6 +26,8 @@ const NavLinks = [
   { id: 3, title: "Events", link: "events" },
   // { id: 3, title: "Leaderboard", link: "leaderboard" },
   { id: 4, title: "Contact", link: "contact" },
+  { id: 5, title: "Feedback", link: "feedback" },
+
 ];
 
 const NavbarClient = () => {
