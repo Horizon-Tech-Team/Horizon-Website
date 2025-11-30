@@ -58,17 +58,11 @@ export function EventsFilterBar() {
           <SelectContent>
             <SelectItem value="all">All Categories</SelectItem>
             <SelectItem value="TECH-SPOTLIGHT">Tech Spotlight</SelectItem>
-            <SelectItem value="TECHNICAL SKILL">Technical Skill</SelectItem>
-            <SelectItem value="LOGICAL & ANALYTICAL">
-              Logical & Analytical
-            </SelectItem>
-            <SelectItem value="VERBAL AND EXPRESSIVE">
-              Verbal & Expressive
-            </SelectItem>
-            <SelectItem value="CREATIVE">Creative</SelectItem>
-            <SelectItem value="FUN & INTERACTIVE SIDE GAMES">
-              Fun & Interactive Side Games
-            </SelectItem>
+            <SelectItem value="TECHNICAL EVENTS">Technical Events</SelectItem>
+            <SelectItem value="ANALYTICAL EVENTS">Analytical Events</SelectItem>
+            <SelectItem value="VERBAL EVENTS">Verbal Events</SelectItem>
+            <SelectItem value="CREATIVE EVENTS">Creative Events</SelectItem>
+            <SelectItem value="FUN EVENTS">Fun Events</SelectItem>
           </SelectContent>
         </Select>
         <Button variant="outline" className="flex items-center gap-2">

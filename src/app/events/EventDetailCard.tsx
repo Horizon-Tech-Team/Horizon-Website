@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 
 export const EventCard = ({ event }: { event: Event }) => {
   return (
-    <Card className="group h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all hover:border-primary/50 hover:shadow-lg flex flex-col">
+    <Card className="group h-full overflow-hidden bg-card/50 backdrop-blur-sm transition-all flex flex-col">
       <Link href={`/events/${event.uid}`} className="block relative h-48 overflow-hidden">
         <Image
           src={event.banner_url || "/placeholder_event.jpg"}
