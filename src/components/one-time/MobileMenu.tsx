@@ -133,7 +133,7 @@ export default function MobileMenu({
                 </Link>
               </li>
             </ul>
-            <Separator />
+            {/* <Separator />
             {user && (
               <ul className="space-y-6 px-6">
                 <li>
@@ -159,11 +159,11 @@ export default function MobileMenu({
                   </Link>
                 </li>
               </ul>
-            )}
-            {user && <Separator />}
+            )} */}
+            {/* {user && <Separator />} */}
           </div>
 
-          <div className="py-4 px-6 w-full">
+          {/* <div className="py-4 px-6 w-full">
             {user ? (
               <button
                 className="primary-btn w-full"
@@ -177,7 +177,7 @@ export default function MobileMenu({
                 <button className="primary-btn w-full">Register Now</button>
               </Link>
             )}
-          </div>
+          </div> */}
         </SheetContent>
       </Sheet>
     </nav>

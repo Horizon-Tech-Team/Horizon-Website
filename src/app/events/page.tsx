@@ -1,10 +1,8 @@
 import { Metadata } from "next";
-import { getAllEvents } from "../actions/actions";
-import { EventsComponet } from "./EventDetailCard";
+import { EventsComponent } from "./EventDetailCard";
 import { EventsFilterBar } from "./EventsFilterBar";
 import { Pagination } from "./Pagination";
 import { staticEvents } from "@/lib/utils";
-import { Event } from "@/lib/types";
 import { BrochureCard } from "./BrochureCard";
 
 interface EventProps {
@@ -55,7 +53,7 @@ const Events = async ({ searchParams }: EventProps) => {
 
       <EventsFilterBar />
 
-      <EventsComponet total={filtered.length} events={filtered} />
+      <EventsComponent total={filtered.length} events={filtered} />
 
       <Pagination
         total={filtered.length}

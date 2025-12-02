@@ -1,4 +1,4 @@
-// EventDetailCard.tsx (or the file where EventsComponet is defined)
+// filepath: src/app/events/EventDetailCard.tsx (or wherever your events component lives)
 "use client";
 
 import React from "react";
@@ -8,15 +8,15 @@ import { CalendarDays, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
-// ← ADD THIS LINE:
+// utility helpers
 import { calculateDaysRemaining, formatDate } from "@/lib/utils";
 
-// Event type import (if needed)
-import type { Event } from "@/lib/types"; // adjust path if different
+// Event type import (adjust path if different)
+import type { Event } from "@/lib/types";
 
 import { Button } from "@/components/ui/button";
 
-export const EventCard = ({ event }: { event: Event }) => {
+export const EventCard: React.FC<{ event: Event }> = ({ event }) => {
   return (
     <Card className="group h-full overflow-hidden bg-card/50 backdrop-blur-sm transition-all flex flex-col">
       <Link href={`/events/${event.uid}`} className="block relative h-48 overflow-hidden">
@@ -82,12 +82,11 @@ export const EventCard = ({ event }: { event: Event }) => {
   );
 };
 
-export const EventsComponet = ({
+// Note: I kept your original exported name but corrected the spelling here.
+// If you prefer the prior (typo) name, swap accordingly.
+export const EventsComponent: React.FC<{ total: number; events: Event[] }> = ({
   total,
   events,
-}: {
-  total: number;
-  events: Event[];
 }) => {
   if (total === 0) {
     return (
@@ -97,7 +96,7 @@ export const EventsComponet = ({
         </div>
         <h3 className="text-lg font-semibold">No events found</h3>
         <p className="text-muted-foreground">
-          Try adjusting your search or filters to find what you're looking for.
+          Try adjusting your search or filters to find what you&apos;re looking for.
         </p>
       </div>
     );
