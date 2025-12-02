@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { getCurrentUserClient } from "@/lib/auth";
-import { Event } from "./events/page";
+import type { Event } from "@/lib/types";
 
 export interface User {
   uid: string;

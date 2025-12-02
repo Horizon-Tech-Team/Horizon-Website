@@ -9,16 +9,7 @@ import { NumberTicker } from "../magicui/number-ticker";
 import { AuroraText } from "../magicui/aurora-text";
 import MobileMenu from "./MobileMenu";
 import { useAuth } from "@/app/AuthProvider";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const NavLinks = [
   { id: 1, title: "Home", link: "/" },
@@ -58,12 +49,12 @@ const NavbarClient = () => {
     }
   };
 
-  const getUserInitials = () => {
-    const first = user?.firstName || "";
-    const last = user?.lastName || "";
-    const initials = `${first.charAt(0)}${last.charAt(0)}`;
-    return initials.toUpperCase() || "U";
-  };
+  // const getUserInitials = () => {
+  //   const first = user?.firstName || "";
+  //   const last = user?.lastName || "";
+  //   const initials = `${first.charAt(0)}${last.charAt(0)}`;
+  //   return initials.toUpperCase() || "U";
+  // };
 
   return (
     <motion.nav

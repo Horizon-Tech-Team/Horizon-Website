@@ -1,7 +1,7 @@
+// filepath: src/app/contact/page.tsx
 "use client";
 
-import type React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,14 +25,52 @@ import {
   Building,
   Globe,
   Instagram,
+  X,
 } from "lucide-react";
 
 // EmailJS (modern SDK)
 import emailjs from "@emailjs/browser";
-emailjs.init("EcxJTjEybx6uUcoSF"); // your public key
+emailjs.init("EcxJTjEybx6uUcoSF"); // your public key (kept as-is from your original code)
 
+/* ----------------------
+   Types
+   ---------------------- */
+type TabType = "general" | "sponsorship" | "media";
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+/* ----------------------
+   Helpers
+   ---------------------- */
+function safeStringifyUnknown(u: unknown): string {
+  try {
+    if (typeof u === "string") return u;
+    return JSON.stringify(u);
+  } catch {
+    return String(u);
+  }
+}
+
+function extractErrorMessage(u: unknown): string | null {
+  if (!u || typeof u !== "object") return null;
+  // attempt to extract common fields
+  const maybe = u as Record<string, unknown>;
+  if (typeof maybe.error === "string") return maybe.error;
+  if (typeof maybe.message === "string") return maybe.message;
+  if (typeof maybe.status === "string") return maybe.status;
+  return null;
+}
+
+/* ----------------------
+   Component
+   ---------------------- */
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     subject: "",
@@ -41,9 +79,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<"general" | "sponsorship" | "media">(
-    "general"
-  );
+  const [activeTab, setActiveTab] = useState<TabType>("general");
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -52,84 +88,85 @@ export default function ContactPage() {
     setFormData((p) => ({ ...p, [name]: value }));
   };
 
-  // Robust debug submit (tries init send, then fallback with explicit publicKey)
-  // replace your existing handleSubmit with this function
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setSuccessMessage(null);
-  setErrorMessage(null);
+  // Robust debug submit (tries SDK send, then fallback to REST)
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSuccessMessage(null);
+    setErrorMessage(null);
 
-  const templateParams = {
-    form_type: "contact_form",
-    category: activeTab,
-    name: formData.name,
-    email: formData.email,
-    subject: formData.subject,
-    message: formData.message,
-  };
-
-  console.log("DEBUG: About to send EmailJS payload:", templateParams);
-
-  // 1) Try SDK send (fast path)
-  try {
-    const res = await emailjs.send(
-      "service_tgfooqj",
-      "template_tqq02al",
-      templateParams
-    );
-    console.log("DEBUG: emailjs.send() resolved:", res);
-
-    // success - clear form & show message
-    setSuccessMessage("Your message has been sent successfully!");
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
-    return;
-  } catch (sdkErr) {
-    console.warn("DEBUG: emailjs.send() failed, falling back to REST call. SDK error:", sdkErr);
-  }
-
-  // 2) Fallback: call EmailJS REST API to get full error JSON (this will show why EmailJS returned 400)
-  try {
-    const restBody = {
-      service_id: "service_2hp27f4",
-      template_id: "template_tqq02al",
-      user_id: "EcxJTjEybx6uUcoSF", // your public key
-      template_params: templateParams,
+    const templateParams = {
+      form_type: "contact_form",
+      category: activeTab,
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
     };
 
-    console.log("DEBUG: Sending direct REST request to EmailJS:", restBody);
+    console.log("DEBUG: About to send EmailJS payload:", templateParams);
 
-    const restRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(restBody),
-    });
+    // 1) Try SDK send (fast path)
+    try {
+      const sdkRes = await emailjs.send(
+        "service_tgfooqj",
+        "template_tqq02al",
+        templateParams
+      );
+      console.log("DEBUG: emailjs.send() resolved:", sdkRes);
 
-    const text = await restRes.text();
-    let data: any = {};
-    try { data = JSON.parse(text); } catch { data = { raw: text }; }
-
-    console.log("DEBUG: EmailJS REST response status:", restRes.status, "body:", data);
-
-    if (restRes.ok) {
       setSuccessMessage("Your message has been sent successfully!");
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } else {
-      // Show detailed error body in console and to user (short)
-      console.error("DEBUG: EmailJS REST error body:", data);
-      setErrorMessage(
-        `Failed to send: ${data?.error || data?.message || JSON.stringify(data).slice(0,200)}`
-      );
+      setIsSubmitting(false);
+      return;
+    } catch (sdkErr) {
+      // SDK failed; fall back to REST to see full error
+      console.warn("DEBUG: emailjs.send() failed, falling back to REST. SDK error:", sdkErr);
     }
-  } catch (restErr: any) {
-    console.error("DEBUG: REST call failed:", restErr);
-    setErrorMessage("Failed to send message — network error. See console for details.");
-  } finally {
-    setIsSubmitting(false);
-  }
-};
 
+    // 2) Fallback: call EmailJS REST API
+    try {
+      const restBody = {
+        service_id: "service_2hp27f4",
+        template_id: "template_tqq02al",
+        user_id: "EcxJTjEybx6uUcoSF", // public key
+        template_params: templateParams,
+      };
+
+      console.log("DEBUG: Sending direct REST request to EmailJS:", restBody);
+
+      const restRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(restBody),
+      });
+
+      const text = await restRes.text();
+      let parsed: unknown = text;
+      try {
+        parsed = JSON.parse(text);
+      } catch {
+        parsed = text;
+      }
+
+      console.log("DEBUG: EmailJS REST response status:", restRes.status, "body:", parsed);
+
+      if (restRes.ok) {
+        setSuccessMessage("Your message has been sent successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        const msg = extractErrorMessage(parsed) ?? safeStringifyUnknown(parsed).slice(0, 300);
+        console.error("DEBUG: EmailJS REST error body:", parsed);
+        setErrorMessage(`Failed to send: ${msg}`);
+      }
+    } catch (restErr: unknown) {
+      console.error("DEBUG: REST call failed:", restErr);
+      const errStr = safeStringifyUnknown(restErr);
+      setErrorMessage(`Failed to send message — network error (${errStr.slice(0, 200)})`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="container max-w-7xl mx-auto py-6 md:py-8 px-4 md:px-6">
@@ -197,6 +234,12 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <span className="sr-only">instagram</span>
                   </a>
                 </Button>
+                <Button size="icon" variant="outline" asChild>
+                  <a href={`https://x.com/horizon_fest`} target="_blank" rel="noopener noreferrer">
+                    <X className="h-5 w-5" />
+                    <span className="sr-only">X</span>
+                  </a>
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -204,7 +247,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
         {/* Contact Form */}
         <div className="lg:col-span-2">
-          <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)} className="w-full">
+          <Tabs value={activeTab} onValueChange={(v: string) => setActiveTab(v as TabType)} className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-4 md:mb-6">
               <TabsTrigger value="general" className="text-xs md:text-sm">
                 <MessageSquare className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
@@ -259,7 +302,14 @@ const handleSubmit = async (e: React.FormEvent) => {
 
                     <div className="space-y-2">
                       <Label htmlFor="message">Message</Label>
-                      <textarea id="message" name="message" value={formData.message} onChange={handleInputChange} required className="w-full min-h-[120px] md:min-h-[150px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full min-h-[120px] md:min-h-[150px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      />
                     </div>
                   </CardContent>
                   <CardFooter>
@@ -279,7 +329,11 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </CardHeader>
                 <form onSubmit={handleSubmit}>
                   <CardContent className="space-y-4">
-                    {successMessage && (<Alert className="bg-green-50 text-green-800 border-green-200"><AlertDescription>{successMessage}</AlertDescription></Alert>)}
+                    {successMessage && (
+                      <Alert className="bg-green-50 text-green-800 border-green-200">
+                        <AlertDescription>{successMessage}</AlertDescription>
+                      </Alert>
+                    )}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name">Your Name</Label>
@@ -298,7 +352,15 @@ const handleSubmit = async (e: React.FormEvent) => {
 
                     <div className="space-y-2">
                       <Label htmlFor="message">Sponsorship Interest</Label>
-                      <textarea id="message" name="message" value={formData.message} onChange={handleInputChange} required placeholder="Please tell us about your company and your sponsorship interests." className="w-full min-h-[120px] md:min-h-[150px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="Please tell us about your company and your sponsorship interests."
+                        className="w-full min-h-[120px] md:min-h-[150px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      />
                     </div>
                   </CardContent>
                   <CardFooter>
@@ -318,7 +380,11 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </CardHeader>
                 <form onSubmit={handleSubmit}>
                   <CardContent className="space-y-4">
-                    {successMessage && (<Alert className="bg-green-50 text-green-800 border-green-200"><AlertDescription>{successMessage}</AlertDescription></Alert>)}
+                    {successMessage && (
+                      <Alert className="bg-green-50 text-green-800 border-green-200">
+                        <AlertDescription>{successMessage}</AlertDescription>
+                      </Alert>
+                    )}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name">Your Name</Label>
@@ -337,7 +403,15 @@ const handleSubmit = async (e: React.FormEvent) => {
 
                     <div className="space-y-2">
                       <Label htmlFor="message">Inquiry Details</Label>
-                      <textarea id="message" name="message" value={formData.message} onChange={handleInputChange} required placeholder="Please provide details about your media inquiry or interview request." className="w-full min-h-[120px] md:min-h-[150px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="Please provide details about your media inquiry or interview request."
+                        className="w-full min-h-[120px] md:min-h-[150px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      />
                     </div>
                   </CardContent>
                   <CardFooter>
@@ -356,7 +430,13 @@ const handleSubmit = async (e: React.FormEvent) => {
       <div className="mb-12 md:mb-16">
         <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">Event Location</h2>
         <div className="rounded-xl overflow-hidden h-[250px] sm:h-[300px] md:h-[400px] relative">
-          <iframe src="https://www.google.com/maps?q=Kirti+M.+Doongursee+College+of+Arts,+Science+and+Commerce,+2RCJ%2B8FR,+Kashinath+Dhuru+Road,+Off.+Veer+Savarkar+Marg,+Dadar+West,+Dadar(W),+Mumbai,+Maharashtra+400028&output=embed" className="w-full h-full border-0 rounded-xl min-h-[250px]" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+          <iframe
+            src="https://www.google.com/maps?q=Kirti+M.+Doongursee+College+of+Arts,+Science+and+Commerce,+2RCJ%2B8FR,+Kashinath+Dhuru+Road,+Off.+Veer+Savarkar+Marg,+Dadar+West,+Dadar(W),+Mumbai,+Maharashtra+400028&output=embed"
+            className="w-full h-full border-0 rounded-xl min-h-[250px]"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="bg-background/90 p-4 sm:p-6 rounded-lg max-w-xs sm:max-w-md text-center">
               <h3 className="font-bold text-lg md:text-xl mb-2">Kirti M. Doongursee College of Arts, Science and Commerce</h3>

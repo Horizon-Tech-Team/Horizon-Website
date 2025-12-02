@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import { Event } from "../page";
+import type { Event } from "@/lib/types";
 import { useState } from "react";
 import { calculateDaysRemaining, formatDate, formatTime } from "@/lib/utils";
 import RegistrationModal from "./registration-modal";
