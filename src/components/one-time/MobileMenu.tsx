@@ -94,10 +94,10 @@ export default function MobileMenu({
             <ul className="space-y-6 px-6">
               <li>
                 <Link
-                  href="/events"
+                  href="/"
                   className="block text-lg font-semibold transition-all"
                 >
-                  Events
+                  Home
                 </Link>
               </li>
               <li>
@@ -110,10 +110,10 @@ export default function MobileMenu({
               </li>
                     <li>
                 <Link
-                  href="/leaderboard"
+                  href="/events"
                   className="block text-lg font-semibold transition-all"
                 >
-                  Leaderboard
+                  Events
                 </Link>
               </li>
               <li>
@@ -122,6 +122,14 @@ export default function MobileMenu({
                   className="block text-lg font-semibold transition-all"
                 >
                   Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/feedback"
+                  className="block text-lg font-semibold transition-all"
+                >
+                  Feedback
                 </Link>
               </li>
             </ul>
