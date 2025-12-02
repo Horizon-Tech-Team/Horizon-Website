@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/lib/firebase";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +22,8 @@ interface FeedbackForm {
   rating: number;
   message: string;
 }
+
+const SHEET_API_URL = process.env.NEXT_PUBLIC_SHEET_API_URL ?? "https://api.sheetmonkey.io/form/kBYAXKPed4VUtp9XBSkhgt";
 
 export default function FeedbackPage() {
   const [formData, setFormData] = useState<FeedbackForm>({
@@ -56,13 +56,28 @@ export default function FeedbackPage() {
   const isValidEmail = (email: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+  // small fetch helper with timeout
+  const fetchWithTimeout = (url: string, opts: RequestInit = {}, timeout = 8000) =>
+    new Promise<Response>((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error("Request timed out")), timeout);
+      fetch(url, opts)
+        .then((res) => {
+          clearTimeout(timer);
+          resolve(res);
+        })
+        .catch((err) => {
+          clearTimeout(timer);
+          reject(err);
+        });
+    });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSuccessMessage(null);
     setErrorMessage(null);
 
-    // Required validation
+    // Basic required validation
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       setErrorMessage("Please fill in your name, email and feedback message.");
       setIsSubmitting(false);
@@ -75,28 +90,46 @@ export default function FeedbackPage() {
       return;
     }
 
+    // Validate SHEET API URL
+    if (!SHEET_API_URL || SHEET_API_URL.includes("REPLACE_WITH_YOUR_SHEET_API_URL")) {
+      setErrorMessage("Sheet API URL not configured. Set NEXT_PUBLIC_SHEET_API_URL in your environment.");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      // Add document to 'feedback' collection
-      await addDoc(collection(db, "feedback"), {
+      // Payload shape - SheetMonkey accepts JSON key/value
+      const payload = {
         name: formData.name.trim(),
         email: formData.email.trim(),
         category: formData.category,
         rating: formData.rating,
         message: formData.message.trim(),
-        submittedAt: serverTimestamp(), // MUST be serverTimestamp() to match your rules
-      });
+        submittedAt: new Date().toISOString(),
+      };
 
-      setSuccessMessage("Thanks — your feedback has been recorded!");
-      setFormData({
-        name: "",
-        email: "",
-        category: "general",
-        rating: 5,
-        message: "",
-      });
+      console.log("Sending feedback to sheet:", payload);
+
+      const res = await fetchWithTimeout(SHEET_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      }, 10000); // 10s timeout
+
+      if (!res.ok) {
+        const text = await res.text().catch(() => "<no response body>");
+        console.error("Sheet API error:", res.status, text);
+        throw new Error(`Sheet API returned ${res.status}: ${text}`);
+      }
+
+      // success
+      setSuccessMessage("Thanks — your feedback has been recorded.");
+      setFormData({ name: "", email: "", category: "general", rating: 5, message: "" });
     } catch (err: any) {
-      console.error("Firestore write failed:", err);
-      setErrorMessage("Failed to submit feedback. Try again later.");
+      console.error("Feedback submit failed:", err);
+      setErrorMessage(err?.message ?? "Failed to submit feedback. Try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -124,6 +157,7 @@ export default function FeedbackPage() {
                   <AlertDescription>{successMessage}</AlertDescription>
                 </Alert>
               )}
+
               {errorMessage && (
                 <Alert variant="destructive">
                   <AlertDescription>{errorMessage}</AlertDescription>
