@@ -50,7 +50,7 @@ enthusiasts who believe that great ideas come alive through teamwork.
 Our mission is to create a space where creativity meets technology — turning inspiration
 into innovation.
           </motion.p>
-          <motion.button
+          {/* <motion.button
             variants={SlideUp(0.6)}
             initial="initial"
             whileInView="animate"
@@ -58,7 +58,7 @@ into innovation.
             className="primary-btn bg-black text-white shadow-[5px_5px_0px_0px_#6c6c6c]"
           >
             Discover Now
-          </motion.button>
+          </motion.button> */}
         </div>
       </div>
     </section>

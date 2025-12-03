@@ -235,7 +235,7 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 flex flex-col justify-center p-6">
           <Badge className="mb-2 w-fit" variant="secondary">
-            May 15-18, 2025
+            Dec 6th-7th, 2025
           </Badge>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">
             Horizon Tech Fest 2025
@@ -286,7 +286,7 @@ export default function AboutPage() {
             <Card className="bg-muted/50">
               <CardContent className="p-4 sm:p-6 flex flex-col items-center text-center">
                 <Calendar className="h-8 w-8 md:h-10 md:w-10 mb-3 md:mb-4 text-primary" />
-                <h3 className="font-bold mb-1">4 Days</h3>
+                <h3 className="font-bold mb-1">2 Days</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground">
                   Of Tech Innovation
                 </p>
@@ -296,9 +296,9 @@ export default function AboutPage() {
             <Card className="bg-muted/50">
               <CardContent className="p-4 sm:p-6 flex flex-col items-center text-center">
                 <MapPin className="h-8 w-8 md:h-10 md:w-10 mb-3 md:mb-4 text-primary" />
-                <h3 className="font-bold mb-1">5 Venues</h3>
+                <h3 className="font-bold mb-1">8 Venues</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Across the City
+                  Across Kirti College
                 </p>
               </CardContent>
             </Card>
@@ -306,7 +306,7 @@ export default function AboutPage() {
             <Card className="bg-muted/50">
               <CardContent className="p-4 sm:p-6 flex flex-col items-center text-center">
                 <Users className="h-8 w-8 md:h-10 md:w-10 mb-3 md:mb-4 text-primary" />
-                <h3 className="font-bold mb-1">10,000+</h3>
+                <h3 className="font-bold mb-1">1.5k+</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground">
                   Expected Attendees
                 </p>
@@ -316,7 +316,7 @@ export default function AboutPage() {
             <Card className="bg-muted/50">
               <CardContent className="p-4 sm:p-6 flex flex-col items-center text-center">
                 <Zap className="h-8 w-8 md:h-10 md:w-10 mb-3 md:mb-4 text-primary" />
-                <h3 className="font-bold mb-1">50+</h3>
+                <h3 className="font-bold mb-1">20+</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground">
                   Tech Events
                 </p>

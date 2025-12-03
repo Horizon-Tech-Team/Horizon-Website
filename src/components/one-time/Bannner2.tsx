@@ -54,7 +54,7 @@ excellence.
               </motion.div>
             ))}
           </motion.div>
-          <motion.button
+          {/* <motion.button
             variants={SlideUp(0.9)}
             initial="initial"
             whileInView="animate"
@@ -62,7 +62,7 @@ excellence.
             className="primary-btn bg-black text-white shadow-[5px_5px_0px_0px_#6c6c6c]"
           >
             Contact Us
-          </motion.button>
+          </motion.button> */}
         </div>
 
         {/* Image section */}

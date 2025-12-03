@@ -1,3 +1,4 @@
+import React from "react";
 import sponsorsData from "@/lib/sponsors";
 import { SponsorList } from "./SponsorList";
 
@@ -5,7 +6,7 @@ export default function SponsorsPage() {
   return (
     <main className="max-w-7xl mx-auto container py-10 px-6 md:px-12">
       {/* Page Title */}
-      <h1 className="text-3xl md:text-5xl font-bold text-center mb-6">
+      <h1 className="text-4xl md:text-6xl font-bold text-center mb-6">
         Our Sponsors
       </h1>
 
