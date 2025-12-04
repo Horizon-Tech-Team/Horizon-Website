@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Banner1 from "../../assets/banner2.png";
+// import Banner1 from "../../assets/banner2.png";
 import { motion } from "framer-motion";
 import { SlideUp } from "@/animations/animate";
 import Image from "next/image";
@@ -29,8 +29,8 @@ const Banner2 = () => {
             className="text-gray-500 text-sm leading-7"
           >
             Learn, create, and compete! From coding challenges and logic games to hardware-based
-workshops, Horizon Fest 2025 is designed to spark curiosity and celebrate technical
-excellence.
+            workshops, Horizon Fest 2025 is designed to spark curiosity and celebrate technical
+            excellence.
           </motion.p>
           <motion.div
             variants={SlideUp(0.6)}
@@ -74,10 +74,11 @@ excellence.
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <Image
-              src={Banner1}
+              src={"/ban2.jpg"}
               alt="Stylish living room"
               className="w-[95%] md:w-full mx-auto"
-              placeholder="blur"
+              width={800}
+              height={750}
             />
           </motion.div>
         </div>
