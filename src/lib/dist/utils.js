@@ -1,0 +1,269 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+"use strict";
+exports.__esModule = true;
+exports.staticEvents = exports.toISOStringLocal = exports.calculateDaysRemaining = exports.formatTime = exports.formatDate = exports.getYearLabel = exports.cn = void 0;
+var clsx_1 = require("clsx");
+var tailwind_merge_1 = require("tailwind-merge");
+var date_fns_tz_1 = require("date-fns-tz");
+function cn() {
+    var inputs = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        inputs[_i] = arguments[_i];
+    }
+    return tailwind_merge_1.twMerge(clsx_1.clsx(inputs));
+}
+exports.cn = cn;
+exports.getYearLabel = function (year) {
+    if (year === 1)
+        return year + "st";
+    if (year === 2)
+        return year + "nd";
+    if (year === 3)
+        return year + "rd";
+    return year + "th";
+};
+var timeZone = "Asia/Kolkata";
+exports.formatDate = function (dateString) {
+    var date = date_fns_tz_1.toZonedTime(new Date(dateString), timeZone); // Convert UTC to Kolkata time
+    return date_fns_tz_1.format(date, "EEEE, d MMMM yyyy", { timeZone: timeZone }); // e.g., "Thursday, 1 May 2025"
+};
+exports.formatTime = function (dateString) {
+    var date = date_fns_tz_1.toZonedTime(new Date(dateString), timeZone); // Convert UTC to Kolkata time
+    return date_fns_tz_1.format(date, "hh:mm a", { timeZone: timeZone }); // e.g., "03:30 PM"
+};
+exports.calculateDaysRemaining = function (dateString) {
+    var today = new Date();
+    var eventDate = new Date(dateString);
+    var timeDiff = eventDate.getTime() - today.getTime();
+    var daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return daysDiff;
+};
+function toISOStringLocal(dateStr, timeStr) {
+    var _a = dateStr.split("-").map(Number), year = _a[0], month = _a[1], day = _a[2];
+    var _b = timeStr.split(":").map(Number), hour = _b[0], minute = _b[1];
+    var d = new Date(year, month - 1, day, hour, minute); // month is 0-based
+    return d.toISOString().slice(0, 19); // 'YYYY-MM-DDTHH:mm:ss'
+}
+exports.toISOStringLocal = toISOStringLocal;
+exports.staticEvents = [
+    {
+        uid: "ev1",
+        name: "HACKATHON",
+        description: "A two-day event to design and build theme based projects two days of development,followed by presentations on Day 3. Tools andframeworks allowed with credit",
+        category: "TECH-SPOTLIGHT",
+        banner_url: "/events/hackathon.png",
+        start_time: "2026-01-06T10:30:00",
+        venue: "JSKB LAB",
+        is_team_event: true,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev2",
+        name: "EXHIBITION",
+        description: "A two-day exhibition where teams showcase original IoT, robotics, or software projects at assigned stalls, engaging visitors with their concepts and functionality.",
+        category: "TECH-SPOTLIGHT",
+        banner_url: "/events/exhibition.png",
+        start_time: "2026-01-06T10:30:00",
+        venue: "GROUND",
+        is_team_event: true,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev3",
+        name: "Speed Coding Challenge",
+        description: "Race against the clock to solve coding challenges and become the fastest Coder on Campus!",
+        category: "TECHNICAL EVENTS",
+        banner_url: "/events/speed coding challenge.png",
+        start_time: "2026-01-06T10:30:00",
+        venue: "LAB 1",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev4",
+        name: "TECHNICAL QUIZ",
+        description: "test your tech knowledge and logic skills in this fast-paced quiz covering programming, networking, and emerging trends.",
+        category: "TECHNICAL EVENTS",
+        banner_url: "/events/tech quiz.png",
+        start_time: "2026-01-06T11:00:00",
+        venue: "ICT LAB",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev5",
+        name: "WEB DESIGNING COMPETITION",
+        description: "Showcase your creativity and skills by designing stunning, responsive websites in this web designing competition.",
+        category: "TECHNICAL EVENTS",
+        banner_url: "/events/web.png",
+        start_time: "2026-01-06T12:00:00",
+        venue: "LAB 1",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev6",
+        name: "ALGORITHM CHALLENGE",
+        description: "Solve real-world coding problems with efficient algorithms in this intense programming and logic challenge",
+        category: "TECHNICAL EVENTS",
+        banner_url: "/events/Algo challenge.png",
+        start_time: "2026-01-06T14:00:00",
+        venue: "LAB 1",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev7",
+        name: "SOFTWARE ENGINEERING",
+        description: "Design clear and creative software architecture diagrams to solve real-world problems using draw.io or similar tools.",
+        category: "TECHNICAL EVENTS",
+        banner_url: "/events/software engineering.png",
+        start_time: "2026-01-07T10:00:00",
+        venue: "LAB 1",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev8",
+        name: "REVERSE ENGINEERING",
+        description: "Analyze and unravel pre-built systems or code to decode, exploit, or reverse engineer them in this tech puzzle challenge.",
+        category: "TECHNICAL EVENTS",
+        banner_url: "/events/reverse engineering.png",
+        start_time: "2026-01-07T11:00:00",
+        venue: "ICT LAB",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev9",
+        name: "BUG BUSTERS",
+        description: "Hunt down and fix hidden bugs in code faster than anyone else in this intense debugging challenge.",
+        category: "TECHNICAL EVENTS",
+        banner_url: "/events/bug buster.png",
+        start_time: "2026-01-07T10:00:00",
+        venue: "LAB 1",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev10",
+        name: "DASHBOARD MAKING",
+        description: "Create interactive dashboards to showcase data insights with strong designs, usability and story telling.",
+        category: "TECHNICAL EVENTS",
+        banner_url: "/events/dashboard.png",
+        start_time: "2026-01-07T14:00:00",
+        venue: "LAB B",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev11",
+        name: "LOGIC PUZZLE",
+        description: "Solve tech-themed jigsaw puzzles with speed and sharp logic to claim victory.",
+        category: "LOGICAL & ANALYTICAL EVENTS",
+        banner_url: "/events/logic.jpg",
+        start_time: "2026-01-06T12:00:00",
+        venue: "2.6",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev12",
+        name: "SRT SITUATION REACTION TEST",
+        description: "Tackle in real life scenarios to test your decision making, logic and presence of mind and under pressure",
+        category: " LOGICAL & ANALYTICAL EVENTS",
+        banner_url: "/events/srt.jpg",
+        start_time: "2026-01-06T14:00:00",
+        venue: "2.8",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev13",
+        name: "ESCAPE ROOM",
+        description: "Use logic, teamwork and team thinking to solve puzzles and escape the room before time runs out",
+        category: " LOGICAL & ANALYTICAL EVENTS",
+        banner_url: "/events/escape.jpg",
+        start_time: "2026-01-07T12:00:00",
+        venue: "GROUND",
+        is_team_event: true,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev14",
+        name: "TRIVIA(RAPID-FIRE)",
+        description: "Test your reflex and knowledge in this rapid-fire trivia quiz covering tech, pop culture,science, and more.",
+        category: " LOGICAL & ANALYTICAL EVENTS",
+        banner_url: "/events/trivia.jpg",
+        start_time: "2026-01-07T14:00:00",
+        venue: "2.8",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev15",
+        name: "MOCK INTERVIEW",
+        description: "Experience real interview scenarios with personalized feedback to boost your confidence and job readiness",
+        category: "VERBAL & EXPRESSIVE EVENTS",
+        banner_url: "/events/mock interview.png",
+        start_time: "2026-01-06T14:00:00",
+        venue: "LAB B",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev16",
+        name: "TECH MEME",
+        description: "Create original tech memes by showcasing your with and humor in this ultimate meme making challenge.",
+        category: "CREATIVE EVENTS",
+        banner_url: "/events/tech meme.png",
+        start_time: "2026-01-06T15:00:00",
+        venue: "LAB 1",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev17",
+        name: "DIGITAL POSTER",
+        description: "Showcase your creativity and artistry by bringing imaginative concepts to life in this digital art competition",
+        category: "CREATIVE EVENTS",
+        banner_url: "/events/digital poster.png",
+        start_time: "2026-01-07T12:00:00",
+        venue: "ICT LAB",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev18",
+        name: "PHOTO STORY",
+        description: "Capture and narrate the essence of the tech fest through powerful,story-driven photography",
+        category: "CREATIVE EVENTS",
+        banner_url: "/events/photostory.png",
+        start_time: "2026-01-07T15:00:00",
+        venue: "ICT LAB",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev19",
+        name: "TIC TAC TOE",
+        description: "Play Tic Tac Toe  simple, familiar, and not at all what it seems",
+        category: "FUN & AND INTERACTIVE SIDE GAMES",
+        banner_url: "/events/Tic tac toe.png",
+        start_time: "2026-01-06",
+        venue: "JSKB",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+    {
+        uid: "ev20",
+        name: "CHESS",
+        description: "Outsmart your opponent in this ultimate game of strategy.",
+        category: "FUN & AND INTERACTIVE SIDE GAMES",
+        banner_url: "/events/chess.png",
+        start_time: "2026-01-06",
+        venue: "JSKB",
+        is_team_event: false,
+        registration_link: "https://forms.google.com/example"
+    },
+];

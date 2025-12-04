@@ -1,3 +1,4 @@
+// filepath: src/app/feedback/page.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -23,8 +24,38 @@ interface FeedbackForm {
   message: string;
 }
 
-const SHEET_API_URL = process.env.NEXT_PUBLIC_SHEET_API_URL ?? "https://api.sheetmonkey.io/form/kBYAXKPed4VUtp9XBSkhgt";
+const SHEET_API_URL =
+  process.env.NEXT_PUBLIC_SHEET_API_URL ??
+  "https://api.sheetmonkey.io/form/kBYAXKPed4VUtp9XBSkhgt";
 
+/* ---------------------
+   Helpers
+   --------------------- */
+function safeStringifyUnknown(u: unknown): string {
+  try {
+    if (typeof u === "string") return u;
+    return JSON.stringify(u);
+  } catch {
+    try {
+      return String(u);
+    } catch {
+      return "Unknown error";
+    }
+  }
+}
+
+function extractErrorMessage(u: unknown): string | null {
+  if (!u || typeof u !== "object") return null;
+  const maybe = u as Record<string, unknown>;
+  if (typeof maybe.error === "string") return maybe.error;
+  if (typeof maybe.message === "string") return maybe.message;
+  if (typeof maybe.detail === "string") return maybe.detail;
+  return null;
+}
+
+/* ---------------------
+   Component
+   --------------------- */
 export default function FeedbackPage() {
   const [formData, setFormData] = useState<FeedbackForm>({
     name: "",
@@ -57,7 +88,11 @@ export default function FeedbackPage() {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   // small fetch helper with timeout
-  const fetchWithTimeout = (url: string, opts: RequestInit = {}, timeout = 8000) =>
+  const fetchWithTimeout = (
+    url: string,
+    opts: RequestInit = {},
+    timeout = 8000
+  ): Promise<Response> =>
     new Promise<Response>((resolve, reject) => {
       const timer = setTimeout(() => reject(new Error("Request timed out")), timeout);
       fetch(url, opts)
@@ -110,26 +145,41 @@ export default function FeedbackPage() {
 
       console.log("Sending feedback to sheet:", payload);
 
-      const res = await fetchWithTimeout(SHEET_API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetchWithTimeout(
+        SHEET_API_URL,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         },
-        body: JSON.stringify(payload),
-      }, 10000); // 10s timeout
+        10000 // 10s timeout
+      );
 
       if (!res.ok) {
         const text = await res.text().catch(() => "<no response body>");
         console.error("Sheet API error:", res.status, text);
-        throw new Error(`Sheet API returned ${res.status}: ${text}`);
+
+        // Try extract JSON if possible
+        let parsed: unknown = text;
+        try {
+          parsed = JSON.parse(text);
+        } catch {
+          parsed = text;
+        }
+
+        const extracted = extractErrorMessage(parsed) ?? safeStringifyUnknown(parsed);
+        throw new Error(`Sheet API returned ${res.status}: ${extracted}`);
       }
 
       // success
       setSuccessMessage("Thanks — your feedback has been recorded.");
       setFormData({ name: "", email: "", category: "general", rating: 5, message: "" });
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Feedback submit failed:", err);
-      setErrorMessage(err?.message ?? "Failed to submit feedback. Try again later.");
+      const msg = extractErrorMessage(err) ?? safeStringifyUnknown(err);
+      setErrorMessage(msg || "Failed to submit feedback. Try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -179,7 +229,13 @@ export default function FeedbackPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="category">Category</Label>
-                  <select id="category" name="category" value={formData.category} onChange={handleSelectChange} className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
+                  <select
+                    id="category"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleSelectChange}
+                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                  >
                     <option value="general">General</option>
                     <option value="website">Website</option>
                     <option value="events">Events / Scheduling</option>
@@ -208,7 +264,15 @@ export default function FeedbackPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="message">Feedback</Label>
-                <textarea id="message" name="message" value={formData.message} onChange={handleInputChange} required placeholder="Tell us exactly what happened, where, and how we can improve." className="w-full min-h-[140px] md:min-h-[180px] rounded-md border border-input bg-background px-3 py-3 text-sm" />
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Tell us exactly what happened, where, and how we can improve."
+                  className="w-full min-h-[140px] md:min-h-[180px] rounded-md border border-input bg-background px-3 py-3 text-sm"
+                />
               </div>
 
               <div className="text-xs text-muted-foreground">
@@ -218,8 +282,19 @@ export default function FeedbackPage() {
 
             <CardFooter>
               <div className="w-full">
-                <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-95 text-white" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : (<><Send className="h-4 w-4 mr-2" />Submit Feedback</>)}
+                <Button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-95 text-white"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4 mr-2" />
+                      Submit Feedback
+                    </>
+                  )}
                 </Button>
               </div>
             </CardFooter>
