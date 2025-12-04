@@ -53,7 +53,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T10:30:00",
     venue: "JSKB LAB",
     is_team_event: true,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/cYimWffA28vKoXjt8",
   },
   {
     uid: "ev2",
@@ -64,7 +64,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T10:30:00",
     venue: "GROUND",
     is_team_event: true,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/vgQYNJQjffokyinJ7",
   },
 
   {
@@ -76,7 +76,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T10:30:00",
     venue: "LAB 1",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/bCLZtSqBg5Rw5rSk9",
   },
 
   {
@@ -88,7 +88,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T11:00:00",
     venue: "ICT LAB",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/bzUbqYnJUNDgrnPL7",
   },
 
   {
@@ -100,7 +100,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T12:00:00",
     venue: "LAB 1",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/kqh5dVjvfHeNqaT2A",
   },
 
   {
@@ -112,7 +112,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T14:00:00",
     venue: "LAB 1",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/pptjYc65nCbVkh4o6",
   },
 
   {
@@ -124,7 +124,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-07T10:00:00",
     venue: "LAB 1",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/UuJnK3eQfDRCLUFS9",
   },
 
   {
@@ -136,7 +136,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-07T11:00:00",
     venue: "ICT LAB",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/xZmLuxYChA28iYoF6",
   },
 
   {
@@ -148,7 +148,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-07T10:00:00",
     venue: "LAB 1",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/GU2131DWeYqM9wtd9",
   },
 
   {
@@ -160,7 +160,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-07T14:00:00",
     venue: "LAB B",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/99WcJLnLCTgoCihP6",
   },
 
   {
@@ -172,7 +172,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T12:00:00",
     venue: "2.6",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/cxgs4JnccRt7iWZs9",
   },
 
   {
@@ -184,7 +184,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T14:00:00",
     venue: "2.8",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/LZkXUMXiXZrEAW378",
   },
 
   {
@@ -196,7 +196,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-07T12:00:00",
     venue: "GROUND",
     is_team_event: true,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/4VNGucTMf9GFTbKy8",
   },
 
 {
@@ -208,7 +208,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-07T14:00:00",
     venue: "2.8",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/R3pPr487jZKp9vRs7",
   },
   
   {
@@ -220,7 +220,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T14:00:00",
     venue: "LAB B",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/qJVAzRgquJoWJqBb7",
   },
 
   
@@ -233,7 +233,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06T15:00:00",
     venue: "LAB 1",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/QAhQBNPwruQnjarG6",
   },
 
 {
@@ -245,7 +245,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-07T12:00:00",
     venue: "ICT LAB",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/Ud9rkEHeN1WPkyAm6",
   },
 
 {
@@ -257,7 +257,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-07T15:00:00",
     venue: "ICT LAB",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/zDMNuZcqjWPF9ufr6",
   },
 
   {
