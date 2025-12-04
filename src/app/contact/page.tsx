@@ -229,14 +229,35 @@ export default function ContactPage() {
 
               <div className="flex items-start gap-3">
                 <Phone className="h-6 w-6 text-primary mt-0.5" />
-                <div>
-                  <h3 className="font-medium">Phone</h3>
+                <div className="flex flex-col gap-1">
                   <a
+                    href="tel:+917021477532"
+                    className="text-sm text-primary hover:underline"
+                  >
+                    +91 70214 77532
+                  </a>
+
+                  <a
+                    href="tel:+919137773967"
+                    className="text-sm text-primary hover:underline"
+                  >
+                    +91 91377 73967
+                  </a>
+
+                  <a
+                    href="tel:+919867622574"
+                    className="text-sm text-primary hover:underline"
+                  >
+                    +91 98676 22574
+                  </a>
+
+                  {/* your existing number LAST */}
+                  {/* <a
                     href="tel:+918097670761"
                     className="text-sm text-primary hover:underline"
                   >
-                    +91 8097670761
-                  </a>
+                    +91 80976 70761
+                  </a> */}
                 </div>
               </div>
 

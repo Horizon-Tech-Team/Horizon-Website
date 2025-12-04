@@ -235,7 +235,7 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 flex flex-col justify-center p-6">
           <Badge className="mb-2 w-fit" variant="secondary">
-            Dec 6th-7th, 2025
+            Jan 6th-7th, 2026
           </Badge>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">
             Horizon Tech Fest 2025
