@@ -6,6 +6,21 @@ import { AuthProvider } from "@/app/AuthProvider";
 import { getCurrentUser } from "./actions/actions";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  icons: {
+    icon: [
+      { url: "/logo1.png", media: "(prefers-color-scheme: light)" },
+      { url: "/logo.png", media: "(prefers-color-scheme: dark)" },
+    ],
+    apple: [
+      { url: "/logo1.png", media: "(prefers-color-scheme: light)" },
+      { url: "/logo.png", media: "(prefers-color-scheme: dark)" },
+    ],
+  },
+};
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

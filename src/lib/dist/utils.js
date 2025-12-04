@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 "use strict";
 exports.__esModule = true;
 exports.staticEvents = exports.toISOStringLocal = exports.calculateDaysRemaining = exports.formatTime = exports.formatDate = exports.getYearLabel = exports.cn = void 0;

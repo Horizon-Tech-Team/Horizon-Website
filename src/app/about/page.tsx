@@ -6,8 +6,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import vp from "@/assets/vp.jpg";
-import arya from "@/assets/Arya_Tambe.jpeg";
+// import vp from "@/assets/vp.jpg";
+// import arya from "@/assets/Arya_Tambe.jpeg";
 const fallbackArya: string =
   "/mnt/data/555f84d5-9be9-4fcb-a6e3-1741c7f46ab8.png";
 import type { StaticImageData } from "next/image";
@@ -49,125 +49,125 @@ const teamMembers: Person[] = [
     designation: "President",
     slogan:
       "Guiding Horizon toward growth, learning, and limitless possibilities.",
-    image: "https://i.pravatar.cc/300?img=1",
+    image: "/vedika.JPG",
   },
   {
     id: 2,
     name: "Harshad Baraskar",
     designation: "Mass Media Head",
     slogan: "Capturing smiles.",
-    image: "https://i.pravatar.cc/300?img=2",
+    image: "/harshad.JPG",
   },
   {
     id: 3,
     name: "Sanika Lad",
     designation: "Marketing Head",
     slogan: "Marketing with purpose, leading the way.",
-    image: "https://i.pravatar.cc/300?img=3",
+    image: "/sanika.JPG",
   },
   {
     id: 4,
     name: "Krupa Bhosale",
     designation: "Secretary",
     slogan: "Leading through coordination, learning through experience.",
-    image: "https://i.pravatar.cc/300?img=4",
+    image: "/krupa.JPG",
   },
   {
     id: 5,
     name: "Pushkar Patil",
     designation: "Security Co-Head",
     slogan: "Guarding memories with precision.",
-    image: "https://i.pravatar.cc/300?img=5",
+    image: "/pushkar.JPG",
   },
   {
     id: 6,
     name: "Tanish Chavan",
     designation: "Marketing Co-Head",
     slogan: "Driving growth through marketing.",
-    image: "https://i.pravatar.cc/300?img=6",
+    image: "/tanish.JPG",
   },
-  {
-    id: 8,
-    name: "Yash Gupta",
-    designation: "Management Co-Head",
-    slogan: "Turning challenges into checklists.",
-    image: "https://i.pravatar.cc/300?img=8",
-  },
+  // {
+  //   id: 8,
+  //   name: "Yash Gupta",
+  //   designation: "Management Co-Head",
+  //   slogan: "Turning challenges into checklists.",
+  //   image: "https://i.pravatar.cc/300?img=8",
+  // },
   {
     id: 9,
     name: "Om Bhangare",
     designation: "Media Co-Head",
     slogan: "Decoding media, Designing moments.",
-    image: "https://i.pravatar.cc/300?img=9",
+    image: "/om.JPG",
   },
   {
     id: 10,
     name: "Madhura Kadam",
     designation: "PR Head",
     slogan: "Bridging minds, shaping moments.",
-    image: "https://i.pravatar.cc/300?img=10",
+    image: "/madhura.JPG",
   },
   {
     id: 12,
     name: "Nitish Dole",
     designation: "Creative Co-Head",
     slogan: "Imagine, create, inspire.",
-    image: "https://i.pravatar.cc/300?img=12",
+    image: "/nitish.JPG",
   },
   {
     id: 13,
     name: "Sanchi Surve",
     designation: "Creative Head",
     slogan: "Leading with vision, creating with passion.",
-    image: "https://i.pravatar.cc/300?img=13",
+    image: "/sachi.JPG",
   },
   {
     id: 14,
     name: "Atharv Chavan",
     designation: "Security Head",
     slogan: "Good vibes, Great welcomes!",
-    image: "https://i.pravatar.cc/300?img=14",
+    image: "/atharva.JPG",
   },
   {
     id: 15,
     name: "Arpita Chavan",
     designation: "Security Co-Head",
     slogan: "Where security meets responsibility..",
-    image: "https://i.pravatar.cc/300?img=15",
+    image: "/arpita.JPG",
   },
   {
     id: 16,
     name: "Arya Tambe",
     designation: "Technical Head",
     slogan: "Beyond error lies evolution.",
-    image: arya,
+    image: "/arya.JPG",
   },
   {
     id: 17,
     name: "Shubham Bandarkar",
     designation: "Vice President 1",
     slogan: "Battlefield of Ideas, Victory of Innovation.",
-    image: vp,
+    image: "/subham.JPG",
   },
   {
     id: 18,
     name: "Soham Patil",
     designation: "Management Head",
     slogan: "Leading with logic, managing with heart.",
-    image: vp,
+    image: "/soham.JPG",
   },
-  {
-    id: 19,
-    name: "Parth Lahor",
-    designation: "Vice President 2",
-    slogan: "One Team. One Mission. One Fest.",
-    image: "https://i.pravatar.cc/300?img=19",
-  },
+  // {
+  //   id: 19,
+  //   name: "Parth Lahor",
+  //   designation: "Vice President 2",
+  //   slogan: "One Team. One Mission. One Fest.",
+  //   image: "https://i.pravatar.cc/300?img=19",
+  // },
 ];
 
 const teams: Team[] = [
   {
-    title: "Technical Team",
+    title: "Tech Team",
     head: teamMembers.find((m) => m.designation === "Technical Head") || null,
   },
   {
@@ -235,7 +235,7 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 flex flex-col justify-center p-6">
           <Badge className="mb-2 w-fit" variant="secondary">
-            May 15-18, 2025
+            Jan 6th-7th, 2026
           </Badge>
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">
             Horizon Tech Fest 2025
@@ -286,7 +286,7 @@ export default function AboutPage() {
             <Card className="bg-muted/50">
               <CardContent className="p-4 sm:p-6 flex flex-col items-center text-center">
                 <Calendar className="h-8 w-8 md:h-10 md:w-10 mb-3 md:mb-4 text-primary" />
-                <h3 className="font-bold mb-1">4 Days</h3>
+                <h3 className="font-bold mb-1">2 Days</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground">
                   Of Tech Innovation
                 </p>
@@ -296,9 +296,9 @@ export default function AboutPage() {
             <Card className="bg-muted/50">
               <CardContent className="p-4 sm:p-6 flex flex-col items-center text-center">
                 <MapPin className="h-8 w-8 md:h-10 md:w-10 mb-3 md:mb-4 text-primary" />
-                <h3 className="font-bold mb-1">5 Venues</h3>
+                <h3 className="font-bold mb-1">8 Venues</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Across the City
+                  Across Kirti College
                 </p>
               </CardContent>
             </Card>
@@ -306,7 +306,7 @@ export default function AboutPage() {
             <Card className="bg-muted/50">
               <CardContent className="p-4 sm:p-6 flex flex-col items-center text-center">
                 <Users className="h-8 w-8 md:h-10 md:w-10 mb-3 md:mb-4 text-primary" />
-                <h3 className="font-bold mb-1">10,000+</h3>
+                <h3 className="font-bold mb-1">1.5k+</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground">
                   Expected Attendees
                 </p>
@@ -316,7 +316,7 @@ export default function AboutPage() {
             <Card className="bg-muted/50">
               <CardContent className="p-4 sm:p-6 flex flex-col items-center text-center">
                 <Zap className="h-8 w-8 md:h-10 md:w-10 mb-3 md:mb-4 text-primary" />
-                <h3 className="font-bold mb-1">50+</h3>
+                <h3 className="font-bold mb-1">20+</h3>
                 <p className="text-xs sm:text-sm text-muted-foreground">
                   Tech Events
                 </p>
@@ -564,7 +564,7 @@ export default function AboutPage() {
             Array.isArray(teams) && teams.length
               ? teams.map((t) => ({ ...t, coheads: normalizeCoheads(t) }))
               : [
-                  { title: "Technical Team", head: find("Technical Head") },
+                  { title: "Tech Team", head: find("Technical Head") },
                   {
                     title: "Mass Media Team",
                     head: find("Mass Media Head"),
@@ -619,7 +619,7 @@ export default function AboutPage() {
           }
 
           const desiredOrder = [
-            "Technical Team",
+            "Tech Team",
             "Mass Media Team",
             "Marketing Team",
             "Management Team",
