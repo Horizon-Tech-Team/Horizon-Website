@@ -20,12 +20,6 @@ const goldSponsors: Sponsor[] = [
   { name: "Gold Sponsor", img: "/warpp-logo-transparent.png" },
 ];
 
-/**
- * Responsive SponsorMarquee
- * - Computes itemWidth based on container width (so it scales on small screens).
- * - Uses ResizeObserver for robust responsiveness instead of fixed pixel values.
- * - Uses next/image with fill inside a positioned wrapper so images scale nicely.
- */
 function SponsorMarquee({
   sponsors,
   duration = 60,
@@ -39,51 +33,48 @@ function SponsorMarquee({
   direction?: "left" | "right";
   minItemWidth?: number;
   maxItemWidth?: number;
-  itemAspect?: number; // width / height
+  itemAspect?: number;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const [itemWidth, setItemWidth] = useState<number>(minItemWidth);
+  const [itemWidth, setItemWidth] = useState(minItemWidth);
   const controls = useAnimationControls();
 
   const validSponsors = useMemo(() => (Array.isArray(sponsors) ? sponsors : []), [sponsors]);
-  if (validSponsors.length === 0) return null;
 
-   useEffect(() => {
-  const container = containerRef.current;
-  if (!container) return; // <-- Type-safe guard
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-  function recompute() {
-    const c = containerRef.current;
-    if (!c) return; // <-- TS safe
-    const cw = c.clientWidth || 0;
+    function recompute() {
+      const c = containerRef.current;
+      if (!c) return;
+      const cw = c.clientWidth || 0;
 
-    let targetVisible = 4.5;
-    if (cw < 480) targetVisible = 1.5;
-    else if (cw < 768) targetVisible = 2.5;
-    else if (cw < 1024) targetVisible = 3.5;
+      let targetVisible = 4.5;
+      if (cw < 480) targetVisible = 1.5;
+      else if (cw < 768) targetVisible = 2.5;
+      else if (cw < 1024) targetVisible = 3.5;
 
-    const computed = Math.floor(cw / targetVisible);
-    const clamped = Math.max(minItemWidth, Math.min(maxItemWidth, computed));
-    setItemWidth(clamped);
-  }
+      const computed = Math.floor(cw / targetVisible);
+      const clamped = Math.max(minItemWidth, Math.min(maxItemWidth, computed));
 
-  recompute();
+      setItemWidth(clamped);
+    }
 
-  const ro = new ResizeObserver(() => recompute());
-  ro.observe(container);
+    recompute();
 
-  return () => ro.disconnect();
-}, [minItemWidth, maxItemWidth]);
+    const ro = new ResizeObserver(() => recompute());
+    ro.observe(container);
 
+    return () => ro.disconnect();
+  }, [minItemWidth, maxItemWidth]);
 
-  // measure track width (half because we duplicate items for smooth loop)
   useEffect(() => {
     function measure() {
       if (!trackRef.current) return;
       const w = Math.max(0, Math.floor(trackRef.current.scrollWidth / 2));
-      // start the animation only after measuring
-      if (w) {
+      if (w && validSponsors.length > 0) {
         const isLeft = direction === "left";
         controls.start({
           x: isLeft ? [0, -w] : [-w, 0],
@@ -91,7 +82,7 @@ function SponsorMarquee({
         });
       }
     }
-    // give images a short moment to layout
+
     const id = window.setTimeout(measure, 80);
     window.addEventListener("resize", measure);
     return () => {
@@ -117,17 +108,18 @@ function SponsorMarquee({
             className="flex items-center justify-center rounded-lg bg-white/3 shadow-sm"
             style={{ width: itemWidth, height: itemHeight, flexShrink: 0 }}
           >
-            {/* next/image with fill so it naturally fits and keeps aspect */}
             <div className="relative w-full h-full">
               <Image
                 src={s.img}
                 alt={s.name}
                 fill
-                sizes={`(max-width: 640px) ${Math.max(120, Math.floor(itemWidth * 0.9))}px, (max-width: 1024px) ${Math.floor(
-                  itemWidth * 0.9,
+                sizes={`(max-width: 640px) ${Math.max(
+                  120,
+                  Math.floor(itemWidth * 0.9)
+                )}px, (max-width: 1024px) ${Math.floor(
+                  itemWidth * 0.9
                 )}px, ${itemWidth}px`}
                 style={{ objectFit: "contain" }}
-                priority={false}
               />
             </div>
           </div>
@@ -137,9 +129,6 @@ function SponsorMarquee({
   );
 }
 
-/**
- * StaticGoldSponsor now uses percentage widths with max constraints so it doesn't overflow on small screens.
- */
 function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
   if (!sponsor) return null;
   return (
@@ -151,16 +140,14 @@ function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
         className="w-full max-w-[480px] sm:max-w-[620px] md:max-w-[760px] px-4"
       >
         <div className="relative w-full h-36 sm:h-44 md:h-56">
-          <Image src={sponsor.img} alt={sponsor.name} fill style={{ objectFit: "contain" }} priority />
+          <Image src={sponsor.img} alt={sponsor.name} fill style={{ objectFit: "contain" }} />
         </div>
       </motion.div>
     </div>
   );
 }
 
-// Simple responsive Stats / Hero numbers component
 function EventStats() {
-  // data — replace with props or CMS as needed
   const stats = [
     { value: "2", label: "Days of non-stop tech action" },
     { value: "24+", label: "Events across coding, gaming, and innovation" },
@@ -170,10 +157,10 @@ function EventStats() {
   return (
     <div className="w-full py-8 sm:py-12">
       <div className="mx-auto max-w-4xl px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
           {stats.map((s, i) => (
             <div key={i} className="flex flex-col items-center">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white">
                 {s.value}
               </div>
               <div className="mt-2 text-sm sm:text-base text-gray-300 max-w-xs">
@@ -204,6 +191,8 @@ export default function SponsorsSection() {
         </motion.h2>
 
         <div className="h-px w-24 bg-gradient-to-r from-transparent via-gray-500 to-transparent" />
+
+        <EventStats />
 
         <SponsorMarquee sponsors={marqueeSponsors} duration={22} direction="right" />
 
