@@ -27,7 +27,7 @@ const Footer = () => {
               <p className="text-xl font-semibold">Horizon 2025</p>
             </div>
             <p>Mumbai, Maharashtra, India</p>
-            <p>© 2025 TCJ. All rights reserved.</p>
+            <p>© 2025 Horizon Fest. All rights reserved.</p>
           </div>
 
           {/* Footer Links */}
