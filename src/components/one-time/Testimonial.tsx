@@ -48,8 +48,8 @@ function SponsorMarquee({
   const controls = useAnimationControls();
 
   const validSponsors = useMemo(() => (Array.isArray(sponsors) ? sponsors : []), [sponsors]);
-  if (validSponsors.length === 0) return null;
 
+  // ---- Hooks run unconditionally (important) ----
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -98,6 +98,11 @@ function SponsorMarquee({
       window.removeEventListener("resize", measure);
     };
   }, [itemWidth, duration, direction, controls, validSponsors.length]);
+
+  // ---- now we can early-return safely (hooks already registered) ----
+  if (validSponsors.length === 0) {
+    return <div ref={containerRef} className="w-full h-10" />; // lightweight placeholder
+  }
 
   const items = [...validSponsors, ...validSponsors];
   const itemHeight = Math.round(itemWidth / itemAspect);
@@ -154,41 +159,7 @@ function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
   );
 }
 
-// /* ---------- Redesigned EventStats (not commented out) ---------- */
-// function EventStats() {
-//   const stats = [
-//     { value: "2", label: "Days of non-stop tech action" },
-//     { value: "24+", label: "Events across coding, gaming, and innovation" },
-//     { value: "500+", label: "Participants from colleges across India" },
-//   ];
 
-//   return (
-//     <div className="w-full py-10">
-//       <div className="mx-auto max-w-5xl px-4">
-//         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-start">
-//           {stats.map((s, i) => (
-//             <motion.div
-//               key={i}
-//               initial={{ opacity: 0, y: 10 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 0.45, delay: i * 0.08 }}
-//               className="bg-white/4 border border-white/6 rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center min-h-[140px]"
-//             >
-//               <div
-//                 className="font-extrabold text-white tracking-tight"
-//                 style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", lineHeight: 1 }}
-//               >
-//                 {s.value}
-//               </div>
-
-//               <div className="mt-3 text-sm sm:text-base text-gray-200 max-w-xs md:max-w-sm leading-6">{s.label}</div>
-//             </motion.div>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 
 /* ---------- Main Sponsors Section (responsive) ---------- */
 export default function SponsorsSection() {
@@ -209,8 +180,6 @@ export default function SponsorsSection() {
 
         <div className="h-px w-24 bg-gradient-to-r from-transparent via-gray-500 to-transparent" />
 
-        {/* Stats block */}
-    
         {/* Top marquee: move RIGHT faster */}
         <SponsorMarquee sponsors={marqueeSponsors} duration={22} direction="right" />
 
