@@ -9,9 +9,9 @@ import Image from "next/image";
 const Banner2 = () => {
   return (
     <section className="container py-14">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center place-items-center md:place-items-start">
         {/* Text section */}
-        <div className="space-y-5 xl:max-w-[500px]">
+        <div className="space-y-5 xl:max-w-[500px] text-center md:text-left">
           <motion.h2
             variants={SlideUp(0.2)}
             initial="initial"
@@ -28,32 +28,34 @@ const Banner2 = () => {
             viewport={{ once: true }}
             className="text-gray-500 text-sm leading-7"
           >
-            Learn, create, and compete! From coding challenges and logic games to hardware-based
-            workshops, Horizon Fest 2025 is designed to spark curiosity and celebrate technical
-            excellence.
+            Learn, create, and compete! From coding challenges and logic games
+            to hardware-based workshops, Horizon Fest 2025 is designed to spark
+            curiosity and celebrate technical excellence.
           </motion.p>
           <motion.div
-            variants={SlideUp(0.6)}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="flex gap-6"
-          >
-            {[
-              { value: "2", label: " Days of non-stop tech action" },
-              { value: "24+", label: "Events across coding, gaming, and innovation" },
-              { value: "500+", label: " Participants from colleges across India" },
-            ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                className="max-w-[80px] space-y-2"
-                variants={SlideUp(0.6 + idx * 0.1)}
-              >
-                <p className="text-3xl font-bold font-serif">{stat.value}</p>
-                <p className="text-gray-500 text-sm">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+  variants={SlideUp(0.6)}
+  initial="initial"
+  whileInView="animate"
+  viewport={{ once: true }}
+  className="flex flex-row justify-center items-center gap-4 px-4"
+>
+  {[
+    { value: "2", label: "Days of non-stop tech action" },
+    { value: "24+", label: "Events across coding, gaming, and innovation" },
+    { value: "500+", label: "Participants from colleges across India" },
+  ].map((stat, idx) => (
+    <motion.div
+      key={idx}
+      variants={SlideUp(0.6 + idx * 0.1)}
+      className="flex-shrink-0 w-20 md:w-28 text-center"
+    >
+      <p className="text-2xl md:text-3xl font-bold font-serif leading-none">{stat.value}</p>
+      <p className="text-xs md:text-sm text-gray-500 leading-tight break-words">{stat.label}</p>
+    </motion.div>
+  ))}
+</motion.div>
+
+
           {/* <motion.button
             variants={SlideUp(0.9)}
             initial="initial"

@@ -9,7 +9,7 @@ import Image from "next/image";
 const Banner = () => {
   return (
     <section className="container py-14">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center place-items-center md:place-items-start">
         {/* Image section */}
         <div className="flex justify-center">
           <motion.div
@@ -29,7 +29,7 @@ const Banner = () => {
         </div>
 
         {/* Text section */}
-        <div className="space-y-5 xl:max-w-[500px]">
+        <div className="space-y-5 xl:max-w-[500px] text-center md:text-left">
           <motion.h2
             variants={SlideUp(0.2)}
             initial="initial"

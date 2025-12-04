@@ -1,3 +1,4 @@
+// src/components/one-time/Testimonial.tsx
 "use client";
 
 import React, { useRef, useEffect, useState, useMemo } from "react";
@@ -9,6 +10,7 @@ export interface Sponsor {
   img: string;
 }
 
+/* ---------- Demo Sponsor Data (replace img paths as needed) ---------- */
 const marqueeSponsors: Sponsor[] = [
   { name: "Sponsor 1", img: "/logo.jpg" },
   { name: "Sponsor 2", img: "/image.png" },
@@ -16,16 +18,15 @@ const marqueeSponsors: Sponsor[] = [
   { name: "Sponsor 4", img: "/smarted.jpg" },
 ];
 
+/* ---------- gold sponsor (single) ---------- */
 const goldSponsors: Sponsor[] = [
-  { name: "Gold Sponsor", img: "/warpp-logo-transparent.png" },
+  {
+    name: "Gold Sponsor",
+    img: "/warpp-logo-transparent.png",
+  },
 ];
 
-/**
- * Responsive SponsorMarquee
- * - Computes itemWidth based on container width (so it scales on small screens).
- * - Uses ResizeObserver for robust responsiveness instead of fixed pixel values.
- * - Uses next/image with fill inside a positioned wrapper so images scale nicely.
- */
+/* ---------- Responsive SponsorMarquee ---------- */
 function SponsorMarquee({
   sponsors,
   duration = 60,
@@ -39,7 +40,7 @@ function SponsorMarquee({
   direction?: "left" | "right";
   minItemWidth?: number;
   maxItemWidth?: number;
-  itemAspect?: number; // width / height
+  itemAspect?: number;
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -47,42 +48,39 @@ function SponsorMarquee({
   const controls = useAnimationControls();
 
   const validSponsors = useMemo(() => (Array.isArray(sponsors) ? sponsors : []), [sponsors]);
-  if (validSponsors.length === 0) return null;
 
-   useEffect(() => {
-  const container = containerRef.current;
-  if (!container) return; // <-- Type-safe guard
+  // ---- Hooks run unconditionally (important) ----
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-  function recompute() {
-    const c = containerRef.current;
-    if (!c) return; // <-- TS safe
-    const cw = c.clientWidth || 0;
+    function recompute() {
+      const c = containerRef.current;
+      if (!c) return;
+      const cw = c.clientWidth || 0;
 
-    let targetVisible = 4.5;
-    if (cw < 480) targetVisible = 1.5;
-    else if (cw < 768) targetVisible = 2.5;
-    else if (cw < 1024) targetVisible = 3.5;
+      // decide how many items should be visible at once depending on width
+      let targetVisible = 4.5;
+      if (cw < 480) targetVisible = 1.5;
+      else if (cw < 768) targetVisible = 2.5;
+      else if (cw < 1024) targetVisible = 3.5;
 
-    const computed = Math.floor(cw / targetVisible);
-    const clamped = Math.max(minItemWidth, Math.min(maxItemWidth, computed));
-    setItemWidth(clamped);
-  }
+      const computed = Math.floor(cw / targetVisible);
+      const clamped = Math.max(minItemWidth, Math.min(maxItemWidth, computed));
+      setItemWidth(clamped);
+    }
 
-  recompute();
+    recompute();
 
-  const ro = new ResizeObserver(() => recompute());
-  ro.observe(container);
+    const ro = new ResizeObserver(() => recompute());
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, [minItemWidth, maxItemWidth]);
 
-  return () => ro.disconnect();
-}, [minItemWidth, maxItemWidth]);
-
-
-  // measure track width (half because we duplicate items for smooth loop)
   useEffect(() => {
     function measure() {
       if (!trackRef.current) return;
       const w = Math.max(0, Math.floor(trackRef.current.scrollWidth / 2));
-      // start the animation only after measuring
       if (w) {
         const isLeft = direction === "left";
         controls.start({
@@ -91,7 +89,8 @@ function SponsorMarquee({
         });
       }
     }
-    // give images a short moment to layout
+
+    // give layout a short moment for images to settle
     const id = window.setTimeout(measure, 80);
     window.addEventListener("resize", measure);
     return () => {
@@ -99,6 +98,11 @@ function SponsorMarquee({
       window.removeEventListener("resize", measure);
     };
   }, [itemWidth, duration, direction, controls, validSponsors.length]);
+
+  // ---- now we can early-return safely (hooks already registered) ----
+  if (validSponsors.length === 0) {
+    return <div ref={containerRef} className="w-full h-10" />; // lightweight placeholder
+  }
 
   const items = [...validSponsors, ...validSponsors];
   const itemHeight = Math.round(itemWidth / itemAspect);
@@ -117,8 +121,7 @@ function SponsorMarquee({
             className="flex items-center justify-center rounded-lg bg-white/3 shadow-sm"
             style={{ width: itemWidth, height: itemHeight, flexShrink: 0 }}
           >
-            {/* next/image with fill so it naturally fits and keeps aspect */}
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full p-2">
               <Image
                 src={s.img}
                 alt={s.name}
@@ -137,9 +140,7 @@ function SponsorMarquee({
   );
 }
 
-/**
- * StaticGoldSponsor now uses percentage widths with max constraints so it doesn't overflow on small screens.
- */
+/* ---------- StaticGoldSponsor (responsive) ---------- */
 function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
   if (!sponsor) return null;
   return (
@@ -158,35 +159,9 @@ function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
   );
 }
 
-// Simple responsive Stats / Hero numbers component
-function EventStats() {
-  // data — replace with props or CMS as needed
-  const stats = [
-    { value: "2", label: "Days of non-stop tech action" },
-    { value: "24+", label: "Events across coding, gaming, and innovation" },
-    { value: "500+", label: "Participants from colleges across India" },
-  ];
 
-  return (
-    <div className="w-full py-8 sm:py-12">
-      <div className="mx-auto max-w-4xl px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center text-center">
-          {stats.map((s, i) => (
-            <div key={i} className="flex flex-col items-center">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
-                {s.value}
-              </div>
-              <div className="mt-2 text-sm sm:text-base text-gray-300 max-w-xs">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
+/* ---------- Main Sponsors Section (responsive) ---------- */
 export default function SponsorsSection() {
   return (
     <section className="w-full bg-black py-12 flex justify-center px-4 relative overflow-hidden">
@@ -205,10 +180,13 @@ export default function SponsorsSection() {
 
         <div className="h-px w-24 bg-gradient-to-r from-transparent via-gray-500 to-transparent" />
 
+        {/* Top marquee: move RIGHT faster */}
         <SponsorMarquee sponsors={marqueeSponsors} duration={22} direction="right" />
 
+        {/* Middle gold static — big */}
         <StaticGoldSponsor sponsor={goldSponsors[0]} />
 
+        {/* Bottom marquee: move LEFT faster */}
         <SponsorMarquee sponsors={marqueeSponsors} duration={12} direction="left" />
       </div>
     </section>
