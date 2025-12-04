@@ -77,7 +77,7 @@ const teamMembers: Person[] = [
     name: "Pushkar Patil",
     designation: "Security Co-Head",
     slogan: "Guarding memories with precision.",
-    image: "/pushkar.jpg",
+    image: "/pushkar.JPG",
   },
   {
     id: 6,
@@ -105,7 +105,7 @@ const teamMembers: Person[] = [
     name: "Madhura Kadam",
     designation: "PR Head",
     slogan: "Bridging minds, shaping moments.",
-    image: "/Madhura.JPG",
+    image: "/madhura.JPG",
   },
   {
     id: 12,
