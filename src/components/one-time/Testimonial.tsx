@@ -1,3 +1,4 @@
+// src/components/one-time/Testimonial.tsx
 "use client";
 
 import React, { useRef, useEffect, useState, useMemo } from "react";
@@ -9,6 +10,7 @@ export interface Sponsor {
   img: string;
 }
 
+/* ---------- Demo Sponsor Data (replace img paths as needed) ---------- */
 const marqueeSponsors: Sponsor[] = [
   { name: "Sponsor 1", img: "/logo.jpg" },
   { name: "Sponsor 2", img: "/image.png" },
@@ -16,10 +18,15 @@ const marqueeSponsors: Sponsor[] = [
   { name: "Sponsor 4", img: "/smarted.jpg" },
 ];
 
+/* ---------- gold sponsor (single) ---------- */
 const goldSponsors: Sponsor[] = [
-  { name: "Gold Sponsor", img: "/warpp-logo-transparent.png" },
+  {
+    name: "Gold Sponsor",
+    img: "/warpp-logo-transparent.png",
+  },
 ];
 
+/* ---------- Responsive SponsorMarquee ---------- */
 function SponsorMarquee({
   sponsors,
   duration = 60,
@@ -37,10 +44,11 @@ function SponsorMarquee({
 }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const [itemWidth, setItemWidth] = useState(minItemWidth);
+  const [itemWidth, setItemWidth] = useState<number>(minItemWidth);
   const controls = useAnimationControls();
 
   const validSponsors = useMemo(() => (Array.isArray(sponsors) ? sponsors : []), [sponsors]);
+  if (validSponsors.length === 0) return null;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -51,6 +59,7 @@ function SponsorMarquee({
       if (!c) return;
       const cw = c.clientWidth || 0;
 
+      // decide how many items should be visible at once depending on width
       let targetVisible = 4.5;
       if (cw < 480) targetVisible = 1.5;
       else if (cw < 768) targetVisible = 2.5;
@@ -58,7 +67,6 @@ function SponsorMarquee({
 
       const computed = Math.floor(cw / targetVisible);
       const clamped = Math.max(minItemWidth, Math.min(maxItemWidth, computed));
-
       setItemWidth(clamped);
     }
 
@@ -66,7 +74,6 @@ function SponsorMarquee({
 
     const ro = new ResizeObserver(() => recompute());
     ro.observe(container);
-
     return () => ro.disconnect();
   }, [minItemWidth, maxItemWidth]);
 
@@ -74,7 +81,7 @@ function SponsorMarquee({
     function measure() {
       if (!trackRef.current) return;
       const w = Math.max(0, Math.floor(trackRef.current.scrollWidth / 2));
-      if (w && validSponsors.length > 0) {
+      if (w) {
         const isLeft = direction === "left";
         controls.start({
           x: isLeft ? [0, -w] : [-w, 0],
@@ -83,6 +90,7 @@ function SponsorMarquee({
       }
     }
 
+    // give layout a short moment for images to settle
     const id = window.setTimeout(measure, 80);
     window.addEventListener("resize", measure);
     return () => {
@@ -108,18 +116,16 @@ function SponsorMarquee({
             className="flex items-center justify-center rounded-lg bg-white/3 shadow-sm"
             style={{ width: itemWidth, height: itemHeight, flexShrink: 0 }}
           >
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full p-2">
               <Image
                 src={s.img}
                 alt={s.name}
                 fill
-                sizes={`(max-width: 640px) ${Math.max(
-                  120,
-                  Math.floor(itemWidth * 0.9)
-                )}px, (max-width: 1024px) ${Math.floor(
-                  itemWidth * 0.9
+                sizes={`(max-width: 640px) ${Math.max(120, Math.floor(itemWidth * 0.9))}px, (max-width: 1024px) ${Math.floor(
+                  itemWidth * 0.9,
                 )}px, ${itemWidth}px`}
                 style={{ objectFit: "contain" }}
+                priority={false}
               />
             </div>
           </div>
@@ -129,6 +135,7 @@ function SponsorMarquee({
   );
 }
 
+/* ---------- StaticGoldSponsor (responsive) ---------- */
 function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
   if (!sponsor) return null;
   return (
@@ -140,40 +147,50 @@ function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
         className="w-full max-w-[480px] sm:max-w-[620px] md:max-w-[760px] px-4"
       >
         <div className="relative w-full h-36 sm:h-44 md:h-56">
-          <Image src={sponsor.img} alt={sponsor.name} fill style={{ objectFit: "contain" }} />
+          <Image src={sponsor.img} alt={sponsor.name} fill style={{ objectFit: "contain" }} priority />
         </div>
       </motion.div>
     </div>
   );
 }
 
-function EventStats() {
-  const stats = [
-    { value: "2", label: "Days of non-stop tech action" },
-    { value: "24+", label: "Events across coding, gaming, and innovation" },
-    { value: "500+", label: "Participants from colleges across India" },
-  ];
+// /* ---------- Redesigned EventStats (not commented out) ---------- */
+// function EventStats() {
+//   const stats = [
+//     { value: "2", label: "Days of non-stop tech action" },
+//     { value: "24+", label: "Events across coding, gaming, and innovation" },
+//     { value: "500+", label: "Participants from colleges across India" },
+//   ];
 
-  return (
-    <div className="w-full py-8 sm:py-12">
-      <div className="mx-auto max-w-4xl px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-          {stats.map((s, i) => (
-            <div key={i} className="flex flex-col items-center">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white">
-                {s.value}
-              </div>
-              <div className="mt-2 text-sm sm:text-base text-gray-300 max-w-xs">
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="w-full py-10">
+//       <div className="mx-auto max-w-5xl px-4">
+//         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-start">
+//           {stats.map((s, i) => (
+//             <motion.div
+//               key={i}
+//               initial={{ opacity: 0, y: 10 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               transition={{ duration: 0.45, delay: i * 0.08 }}
+//               className="bg-white/4 border border-white/6 rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center min-h-[140px]"
+//             >
+//               <div
+//                 className="font-extrabold text-white tracking-tight"
+//                 style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)", lineHeight: 1 }}
+//               >
+//                 {s.value}
+//               </div>
 
+//               <div className="mt-3 text-sm sm:text-base text-gray-200 max-w-xs md:max-w-sm leading-6">{s.label}</div>
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+/* ---------- Main Sponsors Section (responsive) ---------- */
 export default function SponsorsSection() {
   return (
     <section className="w-full bg-black py-12 flex justify-center px-4 relative overflow-hidden">
@@ -192,12 +209,15 @@ export default function SponsorsSection() {
 
         <div className="h-px w-24 bg-gradient-to-r from-transparent via-gray-500 to-transparent" />
 
-        <EventStats />
-
+        {/* Stats block */}
+    
+        {/* Top marquee: move RIGHT faster */}
         <SponsorMarquee sponsors={marqueeSponsors} duration={22} direction="right" />
 
+        {/* Middle gold static — big */}
         <StaticGoldSponsor sponsor={goldSponsors[0]} />
 
+        {/* Bottom marquee: move LEFT faster */}
         <SponsorMarquee sponsors={marqueeSponsors} duration={12} direction="left" />
       </div>
     </section>
