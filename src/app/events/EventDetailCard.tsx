@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 export const EventCard: React.FC<{ event: Event }> = ({ event }) => {
   return (
     <Card className="group h-full overflow-hidden bg-card/50 backdrop-blur-sm transition-all flex flex-col">
-      <Link href={`/events/${event.uid}`} className="block relative h-48 overflow-hidden">
+      <div className="block relative h-48 overflow-hidden">
         <Image
           src={event.banner_url || "/placeholder_event.jpg"}
           alt={event.name}
@@ -45,14 +45,14 @@ export const EventCard: React.FC<{ event: Event }> = ({ event }) => {
             {calculateDaysRemaining(event.start_time)} days left
           </div>
         )}
-      </Link>
+      </div>
 
       <CardContent className="p-5 flex flex-col flex-grow">
-        <Link href={`/events/${event.uid}`} className="block">
+        <div className="block">
           <h3 className="mb-2 line-clamp-1 text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
             {event.name}
           </h3>
-        </Link>
+        </div>
         <p className="mb-4 line-clamp-2 text-sm text-muted-foreground flex-grow">
           {event.description}
         </p>
