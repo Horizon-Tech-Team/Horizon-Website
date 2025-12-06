@@ -27,7 +27,7 @@ const Footer = () => {
               <p className="text-xl font-semibold">Horizon 2025</p>
             </div>
             <p>Mumbai, Maharashtra, India</p>
-            <p>© 2025 TCJ. All rights reserved.</p>
+            <p>© 2025 Horizon Fest. All rights reserved.</p>
           </div>
 
           {/* Footer Links */}
@@ -76,7 +76,8 @@ const Footer = () => {
 
         {/* Bottom Notice */}
         <p className="text-center text-sm font-semibold border-t-2 pt-5 mt-5">
-          &copy; 2025 TCJ. All rights reserved.
+          &copy; 2025 Horizon Fest. Developed by the Technical Team. All Rights Reserved.
+
         </p>
       </div>
     </motion.footer>

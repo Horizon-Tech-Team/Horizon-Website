@@ -383,7 +383,7 @@ export default function AboutPage() {
                 Explore cutting-edge innovations and showcase your tech
                 brilliance.
               </p>
-              <Badge variant="outline">Competition</Badge>
+              {/* <Badge variant="outline">Competition</Badge> */}
             </CardContent>
           </Card>
           <Card>
@@ -395,7 +395,7 @@ export default function AboutPage() {
               <p className="text-sm md:text-base text-muted-foreground mb-4">
                 Put your engineering and problem-solving skills to the test.
               </p>
-              <Badge variant="outline">Conference</Badge>
+              {/* <Badge variant="outline">Conference</Badge> */}
             </CardContent>
           </Card>
           <Card>
@@ -407,7 +407,7 @@ export default function AboutPage() {
               <p className="text-sm md:text-base text-muted-foreground mb-4">
                 Decode puzzles and data-driven challenges with sharp logic.
               </p>
-              <Badge variant="outline">Exhibition</Badge>
+              {/* <Badge variant="outline">Exhibition</Badge> */}
             </CardContent>
           </Card>
           <Card>
@@ -419,7 +419,7 @@ export default function AboutPage() {
               <p className="text-sm md:text-base text-muted-foreground mb-4">
                 Express, debate, and articulate your ideas with confidence.
               </p>
-              <Badge variant="outline">Networking</Badge>
+              {/* <Badge variant="outline">Networking</Badge> */}
             </CardContent>
           </Card>
           <Card>
@@ -431,7 +431,7 @@ export default function AboutPage() {
               <p className="text-sm md:text-base text-muted-foreground mb-4">
                 Let imagination run wild through art, design, and storytelling.
               </p>
-              <Badge variant="outline">Competition</Badge>
+              {/* <Badge variant="outline">Competition</Badge> */}
             </CardContent>
           </Card>
           <Card>
@@ -442,7 +442,7 @@ export default function AboutPage() {
                 Unwind and enjoy light-hearted competitions that bring out your
                 playful side!
               </p>
-              <Badge variant="outline">Learning</Badge>
+              {/* <Badge variant="outline">Learning</Badge> */}
             </CardContent>
           </Card>
         </div>

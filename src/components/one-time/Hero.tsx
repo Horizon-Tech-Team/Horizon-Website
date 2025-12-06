@@ -3,7 +3,7 @@
 
 import React from "react";
 import Image from "next/image";
-import HeroPng from "@/assets/hero.png";
+import HeroPng from "@/assets/hero.jpg";
 import { motion } from "framer-motion";
 import { SlideUp } from "@/animations/animate";
 import { TextAnimate } from "../magicui/text-animate";
