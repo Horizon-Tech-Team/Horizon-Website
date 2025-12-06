@@ -61,7 +61,7 @@ export default function FeedbackPage() {
     name: "",
     email: "",
     category: "general",
-    rating: 5,
+    rating: 0,
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -94,7 +94,10 @@ export default function FeedbackPage() {
     timeout = 8000
   ): Promise<Response> =>
     new Promise<Response>((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Error("Request timed out")), timeout);
+      const timer = setTimeout(
+        () => reject(new Error("Request timed out")),
+        timeout
+      );
       fetch(url, opts)
         .then((res) => {
           clearTimeout(timer);
@@ -113,7 +116,11 @@ export default function FeedbackPage() {
     setErrorMessage(null);
 
     // Basic required validation
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
       setErrorMessage("Please fill in your name, email and feedback message.");
       setIsSubmitting(false);
       return;
@@ -126,8 +133,13 @@ export default function FeedbackPage() {
     }
 
     // Validate SHEET API URL
-    if (!SHEET_API_URL || SHEET_API_URL.includes("REPLACE_WITH_YOUR_SHEET_API_URL")) {
-      setErrorMessage("Sheet API URL not configured. Set NEXT_PUBLIC_SHEET_API_URL in your environment.");
+    if (
+      !SHEET_API_URL ||
+      SHEET_API_URL.includes("REPLACE_WITH_YOUR_SHEET_API_URL")
+    ) {
+      setErrorMessage(
+        "Sheet API URL not configured. Set NEXT_PUBLIC_SHEET_API_URL in your environment."
+      );
       setIsSubmitting(false);
       return;
     }
@@ -169,13 +181,20 @@ export default function FeedbackPage() {
           parsed = text;
         }
 
-        const extracted = extractErrorMessage(parsed) ?? safeStringifyUnknown(parsed);
+        const extracted =
+          extractErrorMessage(parsed) ?? safeStringifyUnknown(parsed);
         throw new Error(`Sheet API returned ${res.status}: ${extracted}`);
       }
 
       // success
       setSuccessMessage("Thanks — your feedback has been recorded.");
-      setFormData({ name: "", email: "", category: "general", rating: 5, message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        category: "general",
+        rating: 5,
+        message: "",
+      });
     } catch (err: unknown) {
       console.error("Feedback submit failed:", err);
       const msg = extractErrorMessage(err) ?? safeStringifyUnknown(err);
@@ -190,7 +209,8 @@ export default function FeedbackPage() {
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold mb-2">Feedback</h1>
         <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-          Help us improve Horizon Tech Fest — your name and email are required so we can follow up.
+          Help us improve Horizon Tech Fest — your name and email are required
+          so we can follow up.
         </p>
       </div>
 
@@ -217,12 +237,25 @@ export default function FeedbackPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Your Name</Label>
-                  <Input id="name" name="name" value={formData.name} onChange={handleInputChange} required />
+                  <Input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
               </div>
 
@@ -252,7 +285,11 @@ export default function FeedbackPage() {
                         key={n}
                         type="button"
                         onClick={() => handleRating(n)}
-                        className={`p-2 rounded-md border ${formData.rating >= n ? "bg-primary/80 border-primary" : "bg-transparent border-muted"}`}
+                        className={`p-2 rounded-md border ${
+                          formData.rating >= n
+                            ? "bg-primary/80 border-primary"
+                            : "bg-transparent border-muted"
+                        }`}
                         aria-label={`${n} star`}
                       >
                         <Star className="h-5 w-5" />
@@ -276,26 +313,22 @@ export default function FeedbackPage() {
               </div>
 
               <div className="text-xs text-muted-foreground">
-                By submitting you agree that we may use anonymized excerpts of your feedback for promotional or improvement purposes.
+                By submitting you agree that we may use anonymized excerpts of
+                your feedback for promotional or improvement purposes.
               </div>
             </CardContent>
 
             <CardFooter>
               <div className="w-full">
                 <Button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-95 text-white"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4 mr-2" />
-                      Submit Feedback
-                    </>
-                  )}
-                </Button>
+  type="submit"
+  className="w-full text-white hover:opacity-95"
+  style={{ backgroundColor: "oklab(0.541 0.109836 -0.258645 / 0.5)" }}
+  disabled={isSubmitting}
+>
+  {isSubmitting ? "Sending..." : <><Send className="h-4 w-4 mr-2" />Submit Feedback</>}
+</Button>
+
               </div>
             </CardFooter>
           </form>

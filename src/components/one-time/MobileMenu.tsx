@@ -116,6 +116,14 @@ export default function MobileMenu({
               </li>
               <li>
                 <Link
+                  href="/sponsors"
+                  className="block text-lg font-semibold transition-all"
+                >
+                  Sponsors
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/contact"
                   className="block text-lg font-semibold transition-all"
                 >

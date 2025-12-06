@@ -15,9 +15,9 @@ const NavLinks = [
   { id: 1, title: "Home", link: "/" },
   { id: 2, title: "About", link: "about" },
   { id: 3, title: "Events", link: "events" },
-  // { id: 3, title: "Leaderboard", link: "leaderboard" },
-  { id: 4, title: "Contact", link: "contact" },
-  { id: 5, title: "Feedback", link: "feedback" },
+  { id: 4, title: "Sponsors", link: "sponsors" },
+  { id: 5, title: "Contact", link: "contact" },
+  { id: 6, title: "Feedback", link: "feedback" },
 
 ];
 

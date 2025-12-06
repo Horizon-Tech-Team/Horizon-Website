@@ -191,7 +191,7 @@ export const staticEvents: Event[] = [
     uid: "ev13",
     name: "ESCAPE ROOM",
     description: "Use logic, teamwork and team thinking to solve puzzles and escape the room before time runs out",
-    category: " ANALYTICAL EVENTS",
+    category: "ANALYTICAL EVENTS",
     banner_url: "/events/escape.jpg",
     start_time: "2026-01-07T12:00:00",
     venue: "GROUND",

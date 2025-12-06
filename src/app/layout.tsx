@@ -1,3 +1,4 @@
+// app/layout.tsx
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/one-time/Navbar";
@@ -9,6 +10,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
+  title: "Horizon Fest 2025",
+  description:
+    "Join the leading tech minds and creators at Horizon Fest 2025 — innovate, compete, and connect.",
   icons: {
     icon: [
       { url: "/logo1.png", media: "(prefers-color-scheme: light)" },
@@ -19,8 +23,31 @@ export const metadata: Metadata = {
       { url: "/logo.png", media: "(prefers-color-scheme: dark)" },
     ],
   },
+  openGraph: {
+    title: "Horizon Fest 2025",
+    description:
+      "Join the leading tech minds and creators at Horizon Fest 2025 — innovate, compete, and connect.",
+    url: "https://www.horizonfest.in/",
+    siteName: "Horizon Fest",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://www.horizonfest.in/OG.png",
+        width: 1200,
+        height: 630,
+        alt: "Horizon Fest 2025 Banner",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Horizon Fest 2025",
+    description:
+      "Join the leading tech minds and creators at Horizon Fest 2025 — innovate, compete, and connect.",
+    images: ["https://www.horizonfest.in/OG.png"],
+  },
 };
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
