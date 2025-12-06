@@ -269,7 +269,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06",
     venue: "JSKB",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/26ZXFjjGxtT7GenEA",
   },
 
   {
@@ -281,7 +281,7 @@ export const staticEvents: Event[] = [
     start_time: "2026-01-06",
     venue: "JSKB",
     is_team_event: false,
-    registration_link: "https://forms.google.com/example",
+    registration_link: "https://forms.gle/uzHmwGL6QD1A8HW68",
   },
 
   
