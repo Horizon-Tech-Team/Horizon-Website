@@ -16,6 +16,10 @@ const marqueeSponsors: Sponsor[] = [
   { name: "Sponsor 2", img: "/image.png" },
   { name: "Sponsor 3", img: "/kerelaKitchen.jpg" },
   { name: "Sponsor 4", img: "/smarted.jpg" },
+  { name: "Sponsor 5", img: "/pranav.jpg" },
+  { name: "Sponsor 6", img: "/sneh.jpeg" },
+  { name: "Sponsor 7", img: "/unicorn.jpeg" },
+  { name: "Sponsor 8", img: "https://www.cnet.com/a/img/resize/0e9874cc9d6b18489f832793796d285141496106/hub/2021/10/16/11804578-0dbc-42af-bcd1-3bc7b1394962/the-batman-2022-teaser-poster-batman-01-promo.jpg?auto=webp&fit=bounds&height=900&precrop=1881,1411,x423,y0&width=1200" },
 ];
 
 /* ---------- gold sponsor (single) ---------- */

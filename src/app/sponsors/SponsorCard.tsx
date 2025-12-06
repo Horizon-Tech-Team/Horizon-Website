@@ -25,7 +25,7 @@ export function SponsorCard({ logo, name, booth, size = "normal" }: SponsorCardP
         </div>
       </div>
 
-      <h3 className={`font-bold tracking-tight mb-2 ${isLarge ? "text-4xl" : "text-2xl"}`}>
+      <h3 className={`font-bold tracking-tight mb-2 ${isLarge ? "text-2xl" : "text-2xl"}`}>
         {name}
       </h3>
 

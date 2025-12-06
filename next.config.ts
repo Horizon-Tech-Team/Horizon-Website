@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "www.cnet.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "imgs.search.brave.com",
         port: "",
         pathname: "/**",
