@@ -86,13 +86,13 @@ const teamMembers: Person[] = [
     slogan: "Driving growth through marketing.",
     image: "/tanish.JPG",
   },
-  // {
-  //   id: 8,
-  //   name: "Yash Gupta",
-  //   designation: "Management Co-Head",
-  //   slogan: "Turning challenges into checklists.",
-  //   image: "https://i.pravatar.cc/300?img=8",
-  // },
+  {
+    id: 8,
+    name: "Yash Gupta",
+    designation: "Management Co-Head",
+    slogan: "Turning challenges into checklists.",
+    image: "/yash.jpg",
+  },
   {
     id: 9,
     name: "Om Bhangare",
@@ -156,13 +156,13 @@ const teamMembers: Person[] = [
     slogan: "Leading with logic, managing with heart.",
     image: "/soham.JPG",
   },
-  // {
-  //   id: 19,
-  //   name: "Parth Lahor",
-  //   designation: "Vice President 2",
-  //   slogan: "One Team. One Mission. One Fest.",
-  //   image: "https://i.pravatar.cc/300?img=19",
-  // },
+  {
+    id: 19,
+    name: "Parth Lahor",
+    designation: "Vice President 2",
+    slogan: "One Team. One Mission. One Fest.",
+    image: "/parth.jpg",
+  },
 ];
 
 const teams: Team[] = [
@@ -241,7 +241,7 @@ export default function AboutPage() {
             Horizon Tech Fest 2025
           </h1>
           <p className="text-lg md:text-2xl text-white/90 max-w-2xl">
-            Hello Tech World 2025: Exploring the Frontiers of Innovation
+            Hello Tech World 2025: The Evolution of Technology
           </p>
         </div>
       </div>
