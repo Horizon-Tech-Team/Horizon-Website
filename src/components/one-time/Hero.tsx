@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { SlideUp } from "@/animations/animate";
-import { TextAnimate } from "../magicui/text-animate";
+// import { TextAnimate } from "../magicui/text-animate";
 
 /* ---------------------------------------------------
    PARTICLES + PERFECT CURSOR-FOLLOW GLOW BACKGROUND
