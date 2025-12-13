@@ -19,7 +19,7 @@ import Image from "next/image";
 import logo from "@/assets/logo.png";
 
 export default function MobileMenu({
-  
+
 }: {
   user: any;
   logout: () => void;
@@ -106,12 +106,20 @@ export default function MobileMenu({
                   About Us
                 </Link>
               </li>
-                    <li>
+              <li>
                 <Link
                   href="/events"
                   className="block text-lg font-semibold transition-all"
                 >
                   Events
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/schedule"
+                  className="block text-lg font-semibold transition-all"
+                >
+                  Schedule
                 </Link>
               </li>
               <li>

@@ -285,11 +285,10 @@ export default function FeedbackPage() {
                         key={n}
                         type="button"
                         onClick={() => handleRating(n)}
-                        className={`p-2 rounded-md border ${
-                          formData.rating >= n
-                            ? "bg-primary/80 border-primary"
-                            : "bg-transparent border-muted"
-                        }`}
+                        className={`p-2 rounded-md border ${formData.rating >= n
+                          ? "bg-primary/80 border-primary"
+                          : "bg-transparent border-muted"
+                          }`}
                         aria-label={`${n} star`}
                       >
                         <Star className="h-5 w-5" />
@@ -321,13 +320,13 @@ export default function FeedbackPage() {
             <CardFooter>
               <div className="w-full">
                 <Button
-  type="submit"
-  className="w-full text-white hover:opacity-95"
-  style={{ backgroundColor: "oklab(0.541 0.109836 -0.258645 / 0.5)" }}
-  disabled={isSubmitting}
->
-  {isSubmitting ? "Sending..." : <><Send className="h-4 w-4 mr-2" />Submit Feedback</>}
-</Button>
+                  type="submit"
+                  className="w-full text-white hover:opacity-95"
+                  style={{ backgroundColor: "oklab(0.541 0.109836 -0.258645 / 0.5)" }}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : <><Send className="h-4 w-4 mr-2" />Submit Feedback</>}
+                </Button>
 
               </div>
             </CardFooter>

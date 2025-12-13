@@ -36,7 +36,7 @@ function SponsorMarquee({
   duration = 60,
   direction = "left",
   minItemWidth = 140,
-  maxItemWidth = 360,
+  maxItemWidth = 450, // Increased max width for desktop
   itemAspect = 16 / 9,
 }: {
   sponsors?: Sponsor[];
@@ -64,10 +64,10 @@ function SponsorMarquee({
       const cw = c.clientWidth || 0;
 
       // decide how many items should be visible at once depending on width
-      let targetVisible = 4.5;
+      let targetVisible = 3.5; // Default for largest screens (fewer items = larger items)
       if (cw < 480) targetVisible = 1.5;
       else if (cw < 768) targetVisible = 2.5;
-      else if (cw < 1024) targetVisible = 3.5;
+      else if (cw < 1024) targetVisible = 3.0; // Slightly larger on laptops
 
       const computed = Math.floor(cw / targetVisible);
       const clamped = Math.max(minItemWidth, Math.min(maxItemWidth, computed));
@@ -153,9 +153,9 @@ function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
         initial={{ opacity: 0, scale: 0.98, y: 8 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-[480px] sm:max-w-[620px] md:max-w-[760px] px-4"
+        className="w-full max-w-[600px] sm:max-w-[800px] md:max-w-[1000px] px-4"
       >
-        <div className="relative w-full h-36 sm:h-44 md:h-56">
+        <div className="relative w-full h-48 sm:h-64 md:h-80">
           <Image src={sponsor.img} alt={sponsor.name} fill style={{ objectFit: "contain" }} priority />
         </div>
       </motion.div>
@@ -168,8 +168,8 @@ function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
 /* ---------- Main Sponsors Section (responsive) ---------- */
 export default function SponsorsSection() {
   return (
-    <section className="w-full bg-black py-12 flex justify-center px-4 relative overflow-hidden">
-      <div className="relative w-full max-w-6xl flex flex-col items-center gap-6 z-10">
+    <section className="w-full bg-transparent py-12 flex justify-center px-4 relative overflow-hidden">
+      <div className="relative w-full flex flex-col items-center gap-8 z-10">
         <div className="pointer-events-none absolute left-0 top-0 h-full w-12 sm:w-20 bg-gradient-to-r from-black to-transparent z-20" />
         <div className="pointer-events-none absolute right-0 top-0 h-full w-12 sm:w-20 bg-gradient-to-l from-black to-transparent z-20" />
 
