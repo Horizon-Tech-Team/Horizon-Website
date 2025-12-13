@@ -81,8 +81,9 @@ const ParticleBackground = () => {
       pos.x = lerp(pos.x, target.x, 0.12);
       pos.y = lerp(pos.y, target.y, 0.12);
 
-      glow.style.transform = `translate(${pos.x - size / 2}px, ${pos.y - size / 2
-        }px)`;
+      glow.style.transform = `translate(${pos.x - size / 2}px, ${
+        pos.y - size / 2
+      }px)`;
 
       requestAnimationFrame(moveGlow);
     };
@@ -120,7 +121,6 @@ const ParticleBackground = () => {
     </>
   );
 };
-
 
 /* ---------------------------------------------------
       COUNTDOWN + VISUAL TIME UNIT BOXES
@@ -196,20 +196,27 @@ const CountdownDisplay = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="flex flex-wrap justify-center items-center gap-4 md:gap-6 mt-10"
-    >
-      <TimeUnit value={timeLeft.days} label="Days" />
-      <Separator />
-      <TimeUnit value={timeLeft.hours} label="Hours" />
-      <Separator />
-      <TimeUnit value={timeLeft.minutes} label="Minutes" />
-      <Separator />
-      <TimeUnit value={timeLeft.seconds} label="Seconds" />
-    </motion.div>
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7, ease: "easeOut" }}
+  viewport={{ once: true }}
+  className="
+    flex flex-nowrap
+    justify-center items-center
+    gap-2 sm:gap-3 md:gap-6
+    mt-10
+    overflow-x-auto
+  "
+>
+  <TimeUnit value={timeLeft.days} label="Days" />
+  <Separator />
+  <TimeUnit value={timeLeft.hours} label="Hours" />
+  <Separator />
+  <TimeUnit value={timeLeft.minutes} label="Minutes" />
+  <Separator />
+  <TimeUnit value={timeLeft.seconds} label="Seconds" />
+</motion.div>
+
   );
 };
 
@@ -236,25 +243,43 @@ const Hero: React.FC = () => {
       {/* CONTENT WRAPPER (Centered, NOT limiting background size) */}
       <div className="relative z-10 w-full max-w-5xl px-4 mx-auto">
         <div className="flex flex-col items-center text-center gap-12">
-
           {/* Heading */}
           <div className="flex flex-col justify-center gap-7 items-center max-w-4xl mx-auto">
             <motion.h1
-              variants={SlideUp(0.2)}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              className="text-5xl md:text-7xl font-bold text-center font-serif tracking-tight"
-            >
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-2">
-                <TextAnimate animation="blurInUp" by="character">HELLO</TextAnimate>
-                <TextAnimate animation="blurInUp" by="character">TECH</TextAnimate>
-                <TextAnimate animation="blurInUp" by="character">WORLD</TextAnimate>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-                  <TextAnimate animation="blurInUp" by="character">2025</TextAnimate>
-                </span>
-              </div>
-            </motion.h1>
+  variants={SlideUp(0.2)}
+  initial="initial"
+  whileInView="animate"
+  viewport={{ once: true }}
+  className="
+    font-serif font-bold tracking-tight
+    text-4xl sm:text-5xl md:text-6xl xl:text-7xl
+    leading-tight
+    text-center
+    flex flex-col
+    items-center justify-center
+    gap-y-2
+  "
+>
+  {/* Line 1 */}
+  <span className="flex flex-col md:flex-row gap-x-4">
+    <span>HELLO</span>
+    <span>TECH</span>
+    <span>WORLD</span>
+  </span>
+
+  {/* Line 2 – YEAR */}
+  <span
+    className="
+      text-transparent bg-clip-text
+      bg-gradient-to-r from-purple-400 to-blue-400
+      text-5xl sm:text-6xl md:text-6xl xl:text-7xl
+      mt-1
+    "
+  >
+    2025
+  </span>
+</motion.h1>
+
 
 
             <motion.h2
@@ -274,10 +299,10 @@ const Hero: React.FC = () => {
               viewport={{ once: true }}
               className="text-lg md:text-lg text-gray-400 leading-8 max-w-2xl text-center"
             >
-              Step into the world of innovation, coding, and collaboration.
-              Join us for workshops, talks, and hands-on experiences that
-              celebrate everything tech — from beginners to pros, everyone says
-              Hello World here.
+              Step into the world of innovation, coding, and collaboration. Join
+              us for workshops, talks, and hands-on experiences that celebrate
+              everything tech — from beginners to pros, everyone says Hello
+              World here.
             </motion.p>
           </div>
 
@@ -285,9 +310,8 @@ const Hero: React.FC = () => {
           <CountdownDisplay />
         </div>
       </div>
-    </section >
+    </section>
   );
 };
-
 
 export default Hero;
