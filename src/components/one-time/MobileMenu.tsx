@@ -31,11 +31,12 @@ export default function MobileMenu({
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const lgBreakpoint = getComputedStyle(document.documentElement)
-      .getPropertyValue("--tw-screen-lg")
-      .trim();
     const handleResize = () => {
-      if (window.innerWidth > parseInt(lgBreakpoint)) {
+      const lgBreakpoint = getComputedStyle(document.documentElement)
+        .getPropertyValue("--tw-screen-lg")
+        .trim();
+      const limit = parseInt(lgBreakpoint) || 1024;
+      if (window.innerWidth > limit) {
         setIsOpen(false);
       }
     };
@@ -48,7 +49,7 @@ export default function MobileMenu({
   }, [pathname, searchParams]);
 
   return (
-    <nav aria-label="Mobile Navigation" className="md:hidden">
+    <nav aria-label="Mobile Navigation" className="lg:hidden">
       {/* Menu Button */}
       <Button
         size="icon"

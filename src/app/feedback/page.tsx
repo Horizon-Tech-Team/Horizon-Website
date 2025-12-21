@@ -321,8 +321,7 @@ export default function FeedbackPage() {
               <div className="w-full">
                 <Button
                   type="submit"
-                  className="w-full text-white hover:opacity-95"
-                  style={{ backgroundColor: "oklab(0.541 0.109836 -0.258645 / 0.5)" }}
+                  className="w-full text-white bg-blue-600 hover:bg-blue-700"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : <><Send className="h-4 w-4 mr-2" />Submit Feedback</>}

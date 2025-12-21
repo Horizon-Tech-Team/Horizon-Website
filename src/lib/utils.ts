@@ -54,6 +54,8 @@ export const staticEvents: Event[] = [
     venue: "JSKB LAB",
     is_team_event: true,
     registration_link: "https://forms.gle/cYimWffA28vKoXjt8",
+    registration_deadline: "2025-12-31",
+    problem_statement_release_date: "2026-01-01",
   },
   {
     uid: "ev2",
@@ -65,6 +67,7 @@ export const staticEvents: Event[] = [
     venue: "GROUND",
     is_team_event: true,
     registration_link: "https://forms.gle/vgQYNJQjffokyinJ7",
+    registration_deadline: "2026-01-04",
   },
 
   {
@@ -77,8 +80,8 @@ export const staticEvents: Event[] = [
     venue: "LAB 1",
     is_team_event: false,
     registration_link: "https://forms.gle/bCLZtSqBg5Rw5rSk9",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev4",
     name: "TECHNICAL QUIZ",
@@ -89,8 +92,8 @@ export const staticEvents: Event[] = [
     venue: "ICT LAB",
     is_team_event: false,
     registration_link: "https://forms.gle/bzUbqYnJUNDgrnPL7",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev5",
     name: "WEB DESIGNING COMPETITION",
@@ -101,8 +104,8 @@ export const staticEvents: Event[] = [
     venue: "LAB 1",
     is_team_event: false,
     registration_link: "https://forms.gle/kqh5dVjvfHeNqaT2A",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev6",
     name: "ALGORITHM CHALLENGE",
@@ -113,8 +116,8 @@ export const staticEvents: Event[] = [
     venue: "LAB 1",
     is_team_event: false,
     registration_link: "https://forms.gle/pptjYc65nCbVkh4o6",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev7",
     name: "SOFTWARE ENGINEERING",
@@ -125,8 +128,8 @@ export const staticEvents: Event[] = [
     venue: "LAB 1",
     is_team_event: false,
     registration_link: "https://forms.gle/UuJnK3eQfDRCLUFS9",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev8",
     name: "REVERSE ENGINEERING",
@@ -137,8 +140,8 @@ export const staticEvents: Event[] = [
     venue: "ICT LAB",
     is_team_event: false,
     registration_link: "https://forms.gle/xZmLuxYChA28iYoF6",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev9",
     name: "BUG BUSTERS",
@@ -149,8 +152,8 @@ export const staticEvents: Event[] = [
     venue: "LAB 1",
     is_team_event: false,
     registration_link: "https://forms.gle/GU2131DWeYqM9wtd9",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev10",
     name: "DASHBOARD MAKING",
@@ -161,8 +164,8 @@ export const staticEvents: Event[] = [
     venue: "LAB B",
     is_team_event: false,
     registration_link: "https://forms.gle/99WcJLnLCTgoCihP6",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev11",
     name: "LOGIC PUZZLE",
@@ -173,8 +176,8 @@ export const staticEvents: Event[] = [
     venue: "2.6",
     is_team_event: false,
     registration_link: "https://forms.gle/cxgs4JnccRt7iWZs9",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev12",
     name: "SRT SITUATION REACTION TEST",
@@ -185,8 +188,8 @@ export const staticEvents: Event[] = [
     venue: "2.8",
     is_team_event: false,
     registration_link: "https://forms.gle/LZkXUMXiXZrEAW378",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev13",
     name: "ESCAPE ROOM",
@@ -197,9 +200,9 @@ export const staticEvents: Event[] = [
     venue: "GROUND",
     is_team_event: true,
     registration_link: "https://forms.gle/4VNGucTMf9GFTbKy8",
+    registration_deadline: "2026-01-04",
   },
-
-{
+  {
     uid: "ev14",
     name: "TRIVIA(RAPID-FIRE)",
     description: "Test your reflex and knowledge in this rapid-fire trivia quiz covering tech, pop culture,science, and more.",
@@ -209,8 +212,8 @@ export const staticEvents: Event[] = [
     venue: "2.8",
     is_team_event: false,
     registration_link: "https://forms.gle/R3pPr487jZKp9vRs7",
+    registration_deadline: "2026-01-04",
   },
-  
   {
     uid: "ev15",
     name: "MOCK INTERVIEW",
@@ -221,9 +224,8 @@ export const staticEvents: Event[] = [
     venue: "LAB B",
     is_team_event: false,
     registration_link: "https://forms.gle/qJVAzRgquJoWJqBb7",
+    registration_deadline: "2026-01-04",
   },
-
-  
   {
     uid: "ev16",
     name: "TECH MEME",
@@ -234,9 +236,9 @@ export const staticEvents: Event[] = [
     venue: "LAB 1",
     is_team_event: false,
     registration_link: "https://forms.gle/QAhQBNPwruQnjarG6",
+    registration_deadline: "2026-01-04",
   },
-
-{
+  {
     uid: "ev17",
     name: "DIGITAL POSTER",
     description: "Showcase your creativity and artistry by bringing imaginative concepts to life in this digital art competition",
@@ -246,9 +248,9 @@ export const staticEvents: Event[] = [
     venue: "ICT LAB",
     is_team_event: false,
     registration_link: "https://forms.gle/Ud9rkEHeN1WPkyAm6",
+    registration_deadline: "2026-01-04",
   },
-
-{
+  {
     uid: "ev18",
     name: "PHOTO STORY",
     description: "Capture and narrate the essence of the tech fest through powerful,story-driven photography",
@@ -258,8 +260,8 @@ export const staticEvents: Event[] = [
     venue: "ICT LAB",
     is_team_event: false,
     registration_link: "https://forms.gle/zDMNuZcqjWPF9ufr6",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev19",
     name: "TIC TAC TOE",
@@ -270,8 +272,8 @@ export const staticEvents: Event[] = [
     venue: "JSKB",
     is_team_event: false,
     registration_link: "https://forms.gle/26ZXFjjGxtT7GenEA",
+    registration_deadline: "2026-01-04",
   },
-
   {
     uid: "ev20",
     name: "CHESS",
@@ -282,7 +284,6 @@ export const staticEvents: Event[] = [
     venue: "JSKB",
     is_team_event: false,
     registration_link: "https://forms.gle/uzHmwGL6QD1A8HW68",
+    registration_deadline: "2026-01-04",
   },
-
-  
 ];

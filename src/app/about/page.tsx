@@ -233,7 +233,7 @@ export default function AboutPage() {
           playsInline
           className="absolute inset-0 w-full h-full opacity-90 object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 flex flex-col justify-center p-6">
+        <div className="absolute inset-0 bg-linear-to-r from-black/70 to-black/40 flex flex-col justify-center p-6">
           <Badge className="mb-2 w-fit" variant="secondary">
             Jan 6th-7th, 2026
           </Badge>
@@ -564,44 +564,44 @@ export default function AboutPage() {
             Array.isArray(teams) && teams.length
               ? teams.map((t) => ({ ...t, coheads: normalizeCoheads(t) }))
               : [
-                  { title: "Tech Team", head: find("Technical Head") },
-                  {
-                    title: "Mass Media Team",
-                    head: find("Mass Media Head"),
-                    coheads: [find("Media Co-Head")].filter(
-                      Boolean
-                    ) as Person[],
-                  },
-                  {
-                    title: "Marketing Team",
-                    head: find("Marketing Head"),
-                    coheads: [find("Marketing Co-Head")].filter(
-                      Boolean
-                    ) as Person[],
-                  },
-                  {
-                    title: "Management Team",
-                    head: find("Management Head"),
-                    coheads: [find("Management Co-Head")].filter(
-                      Boolean
-                    ) as Person[],
-                  },
-                  {
-                    title: "Creative Team",
-                    head: find("Creative Head"),
-                    coheads: [find("Creative Co-Head")].filter(
-                      Boolean
-                    ) as Person[],
-                  },
-                  {
-                    title: "Security Team",
-                    head: find("Security Head"),
-                    coheads: [find("Security Co-Head")].filter(
-                      Boolean
-                    ) as Person[],
-                  },
-                  { title: "PR Team", head: find("PR Head"), coheads: [] },
-                ];
+                { title: "Tech Team", head: find("Technical Head") },
+                {
+                  title: "Mass Media Team",
+                  head: find("Mass Media Head"),
+                  coheads: [find("Media Co-Head")].filter(
+                    Boolean
+                  ) as Person[],
+                },
+                {
+                  title: "Marketing Team",
+                  head: find("Marketing Head"),
+                  coheads: [find("Marketing Co-Head")].filter(
+                    Boolean
+                  ) as Person[],
+                },
+                {
+                  title: "Management Team",
+                  head: find("Management Head"),
+                  coheads: [find("Management Co-Head")].filter(
+                    Boolean
+                  ) as Person[],
+                },
+                {
+                  title: "Creative Team",
+                  head: find("Creative Head"),
+                  coheads: [find("Creative Co-Head")].filter(
+                    Boolean
+                  ) as Person[],
+                },
+                {
+                  title: "Security Team",
+                  head: find("Security Head"),
+                  coheads: [find("Security Co-Head")].filter(
+                    Boolean
+                  ) as Person[],
+                },
+                { title: "PR Team", head: find("PR Head"), coheads: [] },
+              ];
 
           // ensure Security includes Arpita & Pushkar
           const sec = teamsSource.find((t) =>

@@ -28,7 +28,7 @@ export const EventCard: React.FC<{ event: Event }> = ({ event }) => {
           sizes="(max-width: 768px) 100vw, 33vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
         <div className="absolute bottom-3 left-3 flex gap-2">
           <Badge variant="secondary" className="bg-background/80 backdrop-blur-md">
             {event.category}
@@ -70,6 +70,19 @@ export const EventCard: React.FC<{ event: Event }> = ({ event }) => {
               <span>{event.venue}</span>
             </div>
           </div>
+          {event.problem_statement_release_date && (
+            <div className="flex items-center gap-2.5 text-blue-300">
+              <CalendarDays className="h-4 w-4" />
+              <span>Problem Statement Release: {formatDate(event.problem_statement_release_date)}</span>
+            </div>
+          )}
+          {event.registration_deadline && (
+            <div className="flex items-center gap-2.5 text-red-400">
+              <CalendarDays className="h-4 w-4" />
+              <span>Reg. closes: {formatDate(event.registration_deadline)}</span>
+            </div>
+          )}
+
 
           <Button asChild className="w-full" size="sm">
             <Link href={event.registration_link || "#"} target="_blank" rel="noopener noreferrer">

@@ -164,6 +164,7 @@ export interface Event {
   contact_email?: string;
   contact_phone?: string;
   registration_deadline?: string; // ISO 8601 datetime string
+  problem_statement_release_date?: string; // ISO 8601 datetime string
   created_by?: string;
   banner_url?: string;
   registration_link?: string;

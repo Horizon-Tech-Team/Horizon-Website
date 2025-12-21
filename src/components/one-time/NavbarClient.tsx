@@ -86,7 +86,7 @@ const NavbarClient = () => {
       </div>
 
       {/* Navigation links */}
-      <div className="hidden md:flex space-x-12">
+      <div className="hidden lg:flex space-x-12">
         {NavLinks.map((link) => (
           <Link key={link.id} href={`/${link.link}`}>
             <span className="text-lg font-semibold hover:text-gray-600 transition-colors duration-200">
