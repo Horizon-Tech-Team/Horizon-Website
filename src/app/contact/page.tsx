@@ -211,20 +211,26 @@ export default function ContactPage() {
                 <Mail className="h-6 w-6 text-primary mt-0.5" />
                 <div>
                   <h3 className="font-medium">Email</h3>
+
                   <a
-                    href="mailto:horizonfest9@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=horizonfest9@gmail.com&su=Horizon%20Fest%20Inquiry&body=Hello%20Horizon%20Team,"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm text-primary hover:underline block"
                   >
                     horizonfest9@gmail.com
                   </a>
 
                   <a
-                    href="mailto:techteam.horizon@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=techteam.horizon@gmail.com&su=Technical%20Support%20-%20Horizon%20Fest&body=Hello%20Tech%20Team,"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-sm text-primary hover:underline block"
                   >
                     techteam.horizon@gmail.com
                   </a>
                 </div>
+
               </div>
 
               <div className="flex items-start gap-3">

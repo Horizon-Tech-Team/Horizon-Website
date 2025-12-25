@@ -233,18 +233,36 @@ export default function AboutPage() {
           playsInline
           className="absolute inset-0 w-full h-full opacity-90 object-cover"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-black/70 to-black/40 flex flex-col justify-center p-6">
-          <Badge className="mb-2 w-fit" variant="secondary">
-            Jan 6th-7th, 2026
+
+        <div className="absolute inset-0 bg-linear-to-r from-black/70 to-black/40 flex flex-col justify-center p-4 sm:p-6">
+          <Badge className="mb-2 w-fit text-[10px] sm:text-xs" variant="secondary">
+            Jan 6th–7th, 2026
           </Badge>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">
+
+          <h1 className="
+      text-xl        /* phones */
+      sm:text-2xl    /* small tablets */
+      md:text-4xl    /* laptops */
+      lg:text-5xl    /* large screens */
+      font-bold text-white mb-2 sm:mb-3
+    ">
             Horizon Tech Fest 2025
           </h1>
-          <p className="text-lg md:text-2xl text-white/90 max-w-2xl">
+
+          <p className="
+      text-sm        /* phones */
+      sm:text-base
+      md:text-xl
+      lg:text-2xl
+      text-white/90
+      max-w-xs sm:max-w-md md:max-w-2xl
+      leading-snug sm:leading-normal
+    ">
             Hello Tech World 2025: The Evolution of Technology
           </p>
         </div>
       </div>
+
 
       {/* --- About + Stats --- */}
       <div className="mb-12 md:mb-16">
@@ -471,7 +489,6 @@ export default function AboutPage() {
           }> = ({ person, label }) => {
             if (!person) return null;
 
-            // imgSrc will be either string or StaticImageData — both valid for next/image
             const imgSrc =
               person.image ??
               (person.name === "Arya Tambe"
@@ -480,9 +497,9 @@ export default function AboutPage() {
             const altText = person.name ?? label ?? "";
 
             return (
-              <div className="mx-auto max-w-xl w-full">
-                <div className="flex flex-col items-center text-center p-6">
-                  <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-lg overflow-hidden border-2 border-gray-800">
+              <div className="mx-auto max-w-xl w-full group">
+                <div className="flex flex-col items-center text-center p-6 transition-transform duration-300 group-hover:scale-105">
+                  <div className="relative w-44 h-44 sm:w-48 sm:h-48 rounded-lg overflow-hidden border-2 duration-300">
                     <Image
                       src={imgSrc}
                       alt={altText}
