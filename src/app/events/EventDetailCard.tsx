@@ -35,7 +35,7 @@ export const EventCard: React.FC<{ event: Event }> = ({ event }) => {
           </Badge>
           {event.is_team_event && (
             <Badge variant="outline" className="bg-black/50 text-white border-white/20 backdrop-blur-md">
-              Team Event
+              TEAM EVENT
             </Badge>
           )}
         </div>

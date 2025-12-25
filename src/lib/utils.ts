@@ -114,7 +114,7 @@ export const staticEvents: Event[] = [
     banner_url: "/events/Algo challenge.png",
     start_time: "2026-01-06T14:00:00",
     venue: "LAB 1",
-    is_team_event: false,
+    is_team_event: true,
     registration_link: "https://forms.gle/pptjYc65nCbVkh4o6",
     registration_deadline: "2026-01-04",
   },
