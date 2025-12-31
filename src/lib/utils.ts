@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { toZonedTime, format } from "date-fns-tz";
 import { Event } from "./types";
 
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

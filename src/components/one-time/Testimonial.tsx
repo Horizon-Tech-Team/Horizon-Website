@@ -13,7 +13,7 @@ export interface Sponsor {
 /* ---------- Demo Sponsor Data (replace img paths as needed) ---------- */
 const marqueeSponsors: Sponsor[] = [
   { name: "Sponsor 1", img: "/logo.jpg" },
-  { name: "Sponsor 2", img: "/image.png" },
+  { name: "Sponsor 2", img: "/MONKMOMO.png" },
   { name: "Sponsor 3", img: "/kerelaKitchen.jpg" },
   { name: "Sponsor 4", img: "/pranav.jpg" },
   { name: "Sponsor 5", img: "/sneh.jpeg" },

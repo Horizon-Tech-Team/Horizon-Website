@@ -13,7 +13,7 @@ const sponsorsData = {
   ],
   "Stall partners": [
     { name: "Tastebuds", booth: "", logo: "/logo.jpg" },
-    { name: "Madapes", booth: "", logo: "/image.png" },
+    { name: "The Momo Monk", booth: "", logo: "/MONKMOMO.png" },
     { name: "Unicorn Creations", booth: "", logo: "/unicorn.jpeg" },
   ],
 };
