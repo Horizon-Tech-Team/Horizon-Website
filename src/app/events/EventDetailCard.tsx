@@ -143,7 +143,7 @@ export const EventCard: React.FC<{ event: Event }> = ({ event }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Questionnaire
+                    Problem Statements 
                   </Link>
                 </Button>
               )}
