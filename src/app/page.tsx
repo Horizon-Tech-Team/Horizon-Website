@@ -6,17 +6,17 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: {
-    default: "Horizon Tect Fest 2025 | Innovate Beyond Limits",
-    template: "%s | Horizon 2025", // dynamic pages can prepend their own title
+    default: "Horizon Tech Fest 2025-26 | Innovate Beyond Limits",
+    template: "%s | Horizon 2025-26", // dynamic pages can prepend their own title
   },
   description:
-    "Join the leading tech minds and creators at Horizon Tect Fest 2025 — where innovation meets inspiration.",
+    "Join the leading tech minds and creators at Horizon Tech Fest 2025 — where innovation meets inspiration.",
   openGraph: {
-    title: "Horizon Tect Fest 2025",
+    title: "Horizon Tech Fest 2025-26",
     description:
-      "Join the leading tech minds and creators at Horizon Tect Fest 2025 — where innovation meets inspiration.",
+      "Join the leading tech minds and creators at Horizon Tech Fest 2025 — where innovation meets inspiration.",
     url: "https://horizon-frontend-vert.vercel.app",
-    siteName: "Horizon Tect Fest 2025",
+    siteName: "Horizon Tech Fest 2025-26",
     images: [
       {
         url: "https://gjewacuwtvvhxoazxrco.supabase.co/storage/v1/object/public/events/horizon_og.png",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Horizon Tect Fest 2025",
+    title: "Horizon Tech Fest 2025-26",
     description:
-      "Join the leading tech minds and creators at Horizon Tect Fest 2025 — where innovation meets inspiration.",
+      "Join the leading tech minds and creators at Horizon Tech Fest 2025 — where innovation meets inspiration.",
     images: [
       "https://gjewacuwtvvhxoazxrco.supabase.co/storage/v1/object/public/events/horizon_og.png",
     ],

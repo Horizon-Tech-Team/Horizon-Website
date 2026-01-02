@@ -19,7 +19,6 @@ const NavLinks = [
   { id: 5, title: "Sponsors", link: "sponsors" },
   { id: 6, title: "Contact", link: "contact" },
   { id: 7, title: "Feedback", link: "feedback" },
-
 ];
 
 const NavbarClient = () => {
@@ -69,17 +68,17 @@ const NavbarClient = () => {
         <Link href="/">
           <div className="flex items-center gap-2 cursor-pointer">
             <Image src={logo} alt="Interior logo" width={40} height={40} />
-            <div className="flex items-center gap-1 justify-center">
+
+            <div className="flex items-baseline gap-1">
               <span className="text-2xl font-bold">Horizon</span>
-              <div className="flex items-center">
-                <AuroraText>
-                  <NumberTicker
-                    startValue={2000}
-                    value={2025}
-                    className="whitespace-pre-wrap pt-1 text-xl font-bold tracking-tighter text-black dark:text-white"
-                  />
-                </AuroraText>
-              </div>
+
+              <AuroraText className="inline-block">
+                <NumberTicker
+                  startValue={2000}
+                  value={2026}
+                  className="text-xl font-bold leading-none align-baseline tracking-tight text-black dark:text-white"
+                />
+              </AuroraText>
             </div>
           </div>
         </Link>

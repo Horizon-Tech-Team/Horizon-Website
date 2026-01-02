@@ -15,6 +15,8 @@ const sponsorsData = {
     { name: "Tastebuds", booth: "", logo: "/logo.jpg" },
     { name: "The Momo Monk", booth: "", logo: "/MONKMOMO.png" },
     { name: "Unicorn Creations", booth: "", logo: "/unicorn.jpeg" },
+    { name: "Butter Charms", booth: "", logo: "/buttercharms.jpeg" },
+
   ],
 };
 

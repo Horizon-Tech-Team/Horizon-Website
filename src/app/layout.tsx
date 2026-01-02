@@ -1,13 +1,15 @@
 // app/layout.tsx
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
 import Navbar from "@/components/one-time/Navbar";
 import Footer from "@/components/one-time/Footer";
 import { AuthProvider } from "@/app/AuthProvider";
 import { getCurrentUser } from "./actions/actions";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Metadata } from "next";
+import NewYearPopup from "@/components/NewYearPopup";
 
 export const metadata: Metadata = {
   title: "Horizon Fest 2025",
@@ -61,9 +63,9 @@ const geistMono = Geist_Mono({
 
 export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   const { data } = await getCurrentUser();
 
   return (
@@ -71,6 +73,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased px-2 md:px-10`}
       >
+        {/* 🎉 New Year Celebration */}
+        <NewYearPopup />
+
         <AuthProvider userFromServer={data}>
           <ThemeProvider
             attribute="class"
@@ -79,7 +84,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <Navbar />
-            <div className="min-h-[50vh]">{children}</div>
+            <main className="min-h-[50vh]">{children}</main>
             <Footer />
             <Toaster />
           </ThemeProvider>

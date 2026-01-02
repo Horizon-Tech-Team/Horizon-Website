@@ -268,16 +268,19 @@ const Hero: React.FC = () => {
   </span>
 
   {/* Line 2 – YEAR */}
-  <span
-    className="
-      text-transparent bg-clip-text
-      bg-gradient-to-r from-purple-400 to-blue-400
-      text-5xl sm:text-6xl md:text-6xl xl:text-7xl
-      mt-1
-    "
-  >
-    2025
-  </span>
+ <span
+  className="
+    text-transparent bg-clip-text
+    bg-gradient-to-r from-purple-400 to-blue-400
+    text-5xl sm:text-6xl md:text-6xl xl:text-7xl
+    leading-none
+    inline-block
+    pb-1
+  "
+>
+  2025-26
+</span>
+
 </motion.h1>
 
 
