@@ -473,8 +473,10 @@ export default function SchedulePage() {
   const [noise, setNoise] = useState<NoiseParticle[]>([]);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 640;
+
     setNoise(
-      Array.from({ length: 30 }).map(() => ({
+      Array.from({ length: isMobile ? 16 : 30 }).map(() => ({
         top: Math.random() * 100,
         delay: Math.random() * 2,
         duration: Math.random() * 3 + 2,
@@ -483,18 +485,18 @@ export default function SchedulePage() {
   }, []);
 
   return (
-    <main className="bg-black text-white min-h-screen relative overflow-hidden">
-      {/* base particles */}
+    <main className="relative min-h-screen bg-black text-white overflow-hidden">
+      {/* Background particles */}
       <div className="absolute inset-0 z-0">
         <ParticleBackground />
       </div>
 
-      {/* signal noise */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
+      {/* Signal noise */}
+      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
         {noise.map((n, i) => (
           <span
             key={i}
-            className="absolute left-0 w-full h-[2px] bg-white/10 animate-signal"
+            className="absolute left-0 w-full h-[1px] sm:h-[2px] bg-white/10 animate-signal"
             style={{
               top: `${n.top}%`,
               animationDelay: `${n.delay}s`,
@@ -504,16 +506,30 @@ export default function SchedulePage() {
         ))}
       </div>
 
-      {/* center hologram */}
-      <div className="relative z-20 flex items-center justify-center min-h-screen px-4">
-        <div className="relative text-center">
-          <div className="absolute inset-0 blur-xl bg-cyan-500/10 animate-pulse" />
+      {/* Center content */}
+      <div className="relative z-20 flex min-h-screen items-center justify-center px-4 py-16">
+        <div className="relative text-center max-w-[90vw]">
+          {/* Glow */}
+          <div className="absolute inset-0 -z-10 blur-2xl bg-cyan-500/10 animate-pulse rounded-full" />
 
-          <h1 className="holo-text text-5xl md:text-7xl font-extrabold tracking-widest">
-            COMING&nbsp;SOON...
+          {/* Heading */}
+          <h1
+            className="holo-text font-extrabold tracking-widest leading-tight"
+            style={{
+              fontSize: "clamp(2.2rem, 8vw, 4.5rem)",
+            }}
+          >
+            COMING&nbsp;SOON
           </h1>
 
-          <p className="mt-4 text-sm md:text-base text-zinc-400 tracking-[0.3em]">
+          {/* Subtitle */}
+          <p
+            className="mt-4 text-zinc-400 uppercase"
+            style={{
+              fontSize: "clamp(0.65rem, 2.5vw, 0.9rem)",
+              letterSpacing: "0.25em",
+            }}
+          >
             SIGNAL UNSTABLE • DATA INCOMPLETE
           </p>
         </div>
@@ -521,3 +537,4 @@ export default function SchedulePage() {
     </main>
   );
 }
+
