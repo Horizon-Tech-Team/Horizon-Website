@@ -341,7 +341,7 @@ const Hero: React.FC = () => {
               <span className="flex flex-col md:flex-row gap-x-4">
                 <span>Hello</span>
                 <span>Tech</span>
-                <span>World</span>
+                <span>World!</span>
               </span>
 
               {/* Line 2 – YEAR */}
