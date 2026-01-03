@@ -187,8 +187,8 @@ import Image from "next/image";
 const Banner2 = () => {
   const stats = [
     { value: "2", label: "Days of non-stop tech action" },
-    { value: "24+", label: "Events across coding, gaming, and innovation" },
-    { value: "500+", label: "Participants from colleges across India" },
+    { value: "20+", label: "Events across coding and innovation" },
+    { value: "500+", label: "Participants from colleges across Mumbai" },
   ];
 
   return (

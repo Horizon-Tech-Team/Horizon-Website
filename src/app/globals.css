@@ -302,3 +302,50 @@
   animation: pop 0.35s ease-out;
 }
 
+
+
+
+
+
+
+
+
+
+/* hologram text */
+.holo-text {
+  color: #e5faff;
+  text-shadow:
+    1px 0 rgba(0, 255, 255, 0.4),
+    -1px 0 rgba(255, 0, 255, 0.25);
+  animation: holoFlicker 3s infinite ease-in-out;
+}
+
+@keyframes holoFlicker {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translateY(1px);
+  }
+}
+
+/* signal scan noise */
+@keyframes signal {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-signal {
+  animation: signal linear infinite;
+}

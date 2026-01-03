@@ -19,6 +19,10 @@ const marqueeSponsors: Sponsor[] = [
   { name: "Sponsor 5", img: "/sneh.jpeg" },
   { name: "Sponsor 6", img: "/unicorn.jpeg" },
   { name: "Sponsor 7", img: "/smarted.jpg" },
+  { name: "Sponsor 8", img: "/desai.png" },
+  { name: "Sponsor 9", img: "/saishraddha.jpg" },
+  { name: "Sponsor 9", img: "/saraswat.jpg" },
+  { name: "Sponsor 9", img: "/framebox.jpg" },
 
   // { name: "Sponsor 8", img: "https://www.cnet.com/a/img/resize/0e9874cc9d6b18489f832793796d285141496106/hub/2021/10/16/11804578-0dbc-42af-bcd1-3bc7b1394962/the-batman-2022-teaser-poster-batman-01-promo.jpg?auto=webp&fit=bounds&height=900&precrop=1881,1411,x423,y0&width=1200" },
 ];
@@ -52,7 +56,10 @@ function SponsorMarquee({
   const [itemWidth, setItemWidth] = useState<number>(minItemWidth);
   const controls = useAnimationControls();
 
-  const validSponsors = useMemo(() => (Array.isArray(sponsors) ? sponsors : []), [sponsors]);
+  const validSponsors = useMemo(
+    () => (Array.isArray(sponsors) ? sponsors : []),
+    [sponsors]
+  );
 
   // ---- Hooks run unconditionally (important) ----
   useEffect(() => {
@@ -90,7 +97,12 @@ function SponsorMarquee({
         const isLeft = direction === "left";
         controls.start({
           x: isLeft ? [0, -w] : [-w, 0],
-          transition: { repeat: Infinity, repeatType: "loop", duration, ease: "linear" },
+          transition: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration,
+            ease: "linear",
+          },
         });
       }
     }
@@ -131,8 +143,11 @@ function SponsorMarquee({
                 src={s.img}
                 alt={s.name}
                 fill
-                sizes={`(max-width: 640px) ${Math.max(120, Math.floor(itemWidth * 0.9))}px, (max-width: 1024px) ${Math.floor(
-                  itemWidth * 0.9,
+                sizes={`(max-width: 640px) ${Math.max(
+                  120,
+                  Math.floor(itemWidth * 0.9)
+                )}px, (max-width: 1024px) ${Math.floor(
+                  itemWidth * 0.9
                 )}px, ${itemWidth}px`}
                 style={{ objectFit: "contain" }}
                 priority={false}
@@ -157,14 +172,18 @@ function StaticGoldSponsor({ sponsor }: { sponsor?: Sponsor }) {
         className="w-full max-w-[600px] sm:max-w-[800px] md:max-w-[1000px] px-4"
       >
         <div className="relative w-full h-48 sm:h-64 md:h-80">
-          <Image src={sponsor.img} alt={sponsor.name} fill style={{ objectFit: "contain" }} priority />
+          <Image
+            src={sponsor.img}
+            alt={sponsor.name}
+            fill
+            style={{ objectFit: "contain" }}
+            priority
+          />
         </div>
       </motion.div>
     </div>
   );
 }
-
-
 
 /* ---------- Main Sponsors Section (responsive) ---------- */
 export default function SponsorsSection() {
@@ -186,13 +205,21 @@ export default function SponsorsSection() {
         <div className="h-px w-24 bg-gradient-to-r from-transparent via-gray-500 to-transparent" />
 
         {/* Top marquee: move RIGHT faster */}
-        <SponsorMarquee sponsors={marqueeSponsors} duration={22} direction="right" />
+        <SponsorMarquee
+          sponsors={marqueeSponsors}
+          duration={22}
+          direction="right"
+        />
 
         {/* Middle gold static — big */}
         <StaticGoldSponsor sponsor={goldSponsors[0]} />
 
         {/* Bottom marquee: move LEFT faster */}
-        <SponsorMarquee sponsors={marqueeSponsors} duration={12} direction="left" />
+        <SponsorMarquee
+          sponsors={marqueeSponsors}
+          duration={12}
+          direction="left"
+        />
       </div>
     </section>
   );
