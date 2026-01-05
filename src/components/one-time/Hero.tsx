@@ -260,7 +260,7 @@ const EventStartedView = () => {
 
         {/* Floating Data Points */}
         <div className="absolute top-0 -right-12 text-[9px] font-mono text-gray-500 text-left leading-tight hidden sm:block">
-  <div>LOC: 19.0236° N, 72.8397° E</div>
+<div>{`LOC: 19°01'16.8"N 72°49'52.1"E`}</div>
   <div>NET: HTTPS</div>
   <div className="text-purple-500/50">STATUS: ONLINE</div>
 </div>
@@ -284,7 +284,7 @@ const EventStartedView = () => {
       rounded-sm transition-all
     "
   >
-    <span className="relative z-10">Initialize Portal</span>
+    <span className="relative z-10">Initialize Schedule</span>
     <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500" />
     <div className="absolute top-0 left-0 w-1 h-1 border-t border-l border-purple-500" />
     <div className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-blue-500" />
