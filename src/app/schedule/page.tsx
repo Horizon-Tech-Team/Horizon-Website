@@ -340,13 +340,10 @@ function TimelineDay({ dayLabel, events }: { dayLabel: string; events: EventItem
                                         }
   `}
                                 >
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 16 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.45, delay: idx * 0.05 }}
-                                        className="relative bg-black/40 border border-white/10 rounded-2xl p-6 backdrop-blur-xl hover:bg-zinc-900/40 transition-all duration-300 group hover:border-purple-500/30 hover:scale-[1.02] hover:shadow-[0_0_20px_-10px_rgba(168,85,247,0.3)]"
-                                    >
+                                    <div
+  className="relative bg-black/40 border border-white/10 rounded-2xl p-6 backdrop-blur-xl hover:bg-zinc-900/40 transition-all duration-300 group hover:border-purple-500/30 hover:scale-[1.02] hover:shadow-[0_0_20px_-10px_rgba(168,85,247,0.3)]"
+>
+
                                         {/* Gradient Overlay */}
                                         <div className="absolute inset-0 bg-linear-to-br from-white/5 via-transparent to-transparent rounded-2xl opacity-50 pointer-events-none" />
 
@@ -395,7 +392,7 @@ function TimelineDay({ dayLabel, events }: { dayLabel: string; events: EventItem
                                                 </span>
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </div>
                                 </div>
                             </div>
                         );
